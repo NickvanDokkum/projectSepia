@@ -8,15 +8,12 @@ package
 	 */
 	public class Enemy extends Sprite
 	{
-		[Embed(source="../lib/PHEH.png")]
-		private var ArtEnemy : Class;
-		private var artEnemy : Bitmap;
+		
 		
 		public function Enemy() 
 		{
 			
-			artEnemy = new ArtEnemy;
-			Main.main.addChild(artEnemy);
+		
 			
 			
 		}
