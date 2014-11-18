@@ -2,6 +2,7 @@ package
 {
 	
 	
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	
 	/**
@@ -11,9 +12,11 @@ package
 	public class Crosshair extends Sprite
 	{
 		
+		
+		
 		public function Crosshair() 
 		{
-
+			
 		}
 		
 	}
