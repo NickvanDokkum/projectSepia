@@ -20,7 +20,10 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			main = this;
 			_game = new Game;
+			addChild(_game);
+			
 		}
 		
 	}
