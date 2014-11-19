@@ -27,10 +27,6 @@ package
 		
 		public function Game()
 		{
-			_player = new Player;
-			_enemy = new Enemy;
-			_crosshair = new Crosshair;
-			_background = new Background;
 			
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
@@ -39,6 +35,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			_background = new Background();
+			addChild(_background);
 			_player = new Player(stage);
 			_enemy = new EnemyCreator(stage);
 			_crosshair = new Crosshair();
@@ -52,7 +50,7 @@ package
 			var currentEnemy : Enemy;
 			for (var i in _enemy.enemyArray) {
 				currentEnemy = _enemy.enemyArray[i];
-				if (currentEnemy.hitTestPoint(e.stageX, e.stageY)) {
+				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
 					currentEnemy.hit();
 				}
 			}
@@ -66,7 +64,7 @@ package
 				var currentEnemy : Enemy;
 					for (var i in _enemy.enemyArray) {
 					currentEnemy = _enemy.enemyArray[i];
-					if (currentEnemy.hitTestPoint(e.stageX, e.stageY)) {
+					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
 						currentEnemy.shoot();
 					}
 				}

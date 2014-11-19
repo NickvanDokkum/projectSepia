@@ -6,8 +6,6 @@ package
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.display.Bitmap;
-
-	
 	import flash.display.Sprite;
 
 	
@@ -21,9 +19,7 @@ package
 
 		private var _stage : Stage;
 
-		[Embed(source="../lib/PHAP.png")]
-		private var ArtPlayer : Class;
-		private var artPlayer : Bitmap;
+	
 
 		
 		[Embed(source="../lib/chara_design.jpg")]
@@ -76,8 +72,7 @@ package
 		public function gotHit():void {
 			//player death animation here, please
 
-			artPlayer = new ArtPlayer;
-			addChild(artPlayer);
+			
 			
 
 		}
