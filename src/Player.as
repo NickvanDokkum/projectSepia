@@ -19,12 +19,8 @@ package
 
 		private var _stage : Stage;
 
-	
-
+		public var player:MovieClip = new cowboy();
 		
-		[Embed(source="../lib/chara_design.jpg")]
-		private var PlayerArt:Class;
-		private var player:Bitmap;
 		
 		private var buttonA:Boolean = false;
 		private var buttonD:Boolean = false;
@@ -37,7 +33,7 @@ package
 		private function init(e:Event = null):void 
 		{
 			_stage.removeEventListener(Event.ADDED_TO_STAGE, init);
-			player = new PlayerArt();
+			player = new cowboy();
 			Main.main.stage.addChild(player);
 			
 
