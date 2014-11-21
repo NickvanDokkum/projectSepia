@@ -28,7 +28,7 @@ package
 		}
 		public function createWave():void 
 		{
-			var enemy:Enemy = new Enemy;
+			var enemy:Enemy = new Enemy();
 			_stage.addChild(enemy);
 			enemyArray.push(enemy);
 		}

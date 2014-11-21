@@ -21,7 +21,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			main = this;
-			_game = new Game;
+			_game = new Game();
 			addChild(_game);
 			
 		}

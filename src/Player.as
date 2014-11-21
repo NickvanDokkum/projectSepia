@@ -1,20 +1,25 @@
 package  
 {
+
+	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.display.Bitmap;
+	import flash.display.Sprite;
 	/**
 	 * ...
 	 * @author Nick van Dokkum
 	 */
-	public class Player 
+	public class Player extends MovieClip
 	{
 		private var _stage : Stage;
 		
 		[Embed(source="../lib/chara_design.jpg")]
 		private var PlayerArt:Class;
 		private var player:Bitmap;
+		
+		private var bulletTimeBool:Boolean = false;
 		
 		private var buttonA:Boolean = false;
 		private var buttonD:Boolean = false;
@@ -28,8 +33,8 @@ package
 		{
 			_stage.removeEventListener(Event.ADDED_TO_STAGE, init);
 			player = new PlayerArt();
-			Main.main.stage.addChild(player);
-			
+			_stage.addChild(player);
+
 			_stage.addEventListener(Event.ENTER_FRAME, updateFunction);
 			_stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			_stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
@@ -51,16 +56,24 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-			if (buttonD == true) {
-				//move right
-			}
-			else if (buttonA == true) {
-				//move left
+			if(bulletTimeBool == false){
+				if (buttonD == true) {
+					//move right
+				}
+				else if (buttonA == true) {
+					Main.main._game.moveEverythingLeft();
+					// move left animation player
+				}
 			}
 		}
 		public function gotHit():void {
 			//player death animation here, please
 		}
+		public function bulletTime():void {
+			bulletTimeBool = true;
+		}
+		public function bulletTimeOff():void {
+			bulletTimeBool = false;
+		}
 	}
-
 }

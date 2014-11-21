@@ -15,9 +15,12 @@ package
 		public var _player:Player;
 		public var _enemy:EnemyCreator;
 		public var _crosshair:Crosshair;
+		public var _background:Background;
+
 		private var enemiesHit:Number = 0;
 		private var deathTimer:Timer = new Timer(1000, 1);
-		public function Game() 
+		
+		public function Game()
 		{
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
@@ -26,6 +29,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			_background = new Background();
+			addChild(_background);
 			_player = new Player(stage);
 			_enemy = new EnemyCreator(stage);
 			_crosshair = new Crosshair();
@@ -39,7 +44,7 @@ package
 			var currentEnemy : Enemy;
 			for (var i in _enemy.enemyArray) {
 				currentEnemy = _enemy.enemyArray[i];
-				if (currentEnemy.hitTestPoint(e.stageX, e.stageY)) {
+				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
 					currentEnemy.hit();
 				}
 			}
@@ -53,15 +58,37 @@ package
 				var currentEnemy : Enemy;
 					for (var i in _enemy.enemyArray) {
 					currentEnemy = _enemy.enemyArray[i];
-					if (currentEnemy.hitTestPoint(e.stageX, e.stageY)) {
+					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
 						currentEnemy.shoot();
 					}
 				}
 				_player.gotHit();
 				stage.removeEventListener(MouseEvent.CLICK,click);
 			}
+			else {
+				_player.bulletTimeOff();
+			}
 		}
-		
+		public function bulletTime():void {
+			_player.bulletTime();
+		}
+		public function moveEverythingLeft():void {
+			var currentEnemy : Enemy;
+					for (var i in _enemy.enemyArray) {
+					currentEnemy = _enemy.enemyArray[i];
+					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+						currentEnemy.moveLeft();
+					}
+				}
+		}
+		public function moveEverythingRight():void {
+			var currentEnemy : Enemy;
+					for (var i in _enemy.enemyArray) {
+					currentEnemy = _enemy.enemyArray[i];
+					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+						currentEnemy.moveRight();
+					}
+				}
+		}
 	}
-
 }
