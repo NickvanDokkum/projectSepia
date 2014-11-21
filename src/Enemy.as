@@ -29,15 +29,15 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			stage.addEventListener(Event.ENTER_FRAME, updateFunction);
 			enemy = new enemyArt();
-			enemy.x = 300;
-			enemy.y = 300;
+			enemy.x = 1000;
+			enemy.y = 400;
 			addChild(enemy);
 		}
 		
 		private function updateFunction(e:Event):void 
 		{
 			if (bulletTime == false && hitted == false) {
-				if (enemy.x < 700) {
+				if (enemy.x < 1001) {
 					Main.main._game.bulletTime();
 				}
 			}

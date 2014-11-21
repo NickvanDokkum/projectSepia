@@ -30,6 +30,8 @@ package
 		{
 			_stage.removeEventListener(Event.ADDED_TO_STAGE, init);
 			player = new cowboy();
+			player.x = 200;
+			player.y = 500;
 			Main.main.stage.addChild(player);
 			
 
@@ -55,10 +57,10 @@ package
 		}
 		public function updateFunction(e:Event):void {
 			if (buttonD == true) {
-				//move right
+				Main.main._game.moveEverythingRight;
 			}
 			else if (buttonA == true) {
-				//move left
+				Main.main._game.moveEverythingLeft;
 			}
 		}
 		public function gotHit():void {
