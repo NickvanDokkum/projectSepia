@@ -1,6 +1,5 @@
 package  
 {
-
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -13,13 +12,11 @@ package
 	 */
 	public class Player extends MovieClip
 	{
-		private var _stage : Stage;
-		
-		[Embed(source="../lib/chara_design.jpg")]
-		private var PlayerArt:Class;
-		private var player:Bitmap;
-		
 		private var bulletTimeBool:Boolean = false;
+
+		private var _stage : Stage;
+
+		public var player:MovieClip = new cowboy();
 		
 		private var buttonA:Boolean = false;
 		private var buttonD:Boolean = false;
@@ -32,8 +29,9 @@ package
 		private function init(e:Event = null):void 
 		{
 			_stage.removeEventListener(Event.ADDED_TO_STAGE, init);
-			player = new PlayerArt();
-			_stage.addChild(player);
+			player = new cowboy();
+			Main.main.stage.addChild(player);
+			
 
 			_stage.addEventListener(Event.ENTER_FRAME, updateFunction);
 			_stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
@@ -56,14 +54,11 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-			if(bulletTimeBool == false){
-				if (buttonD == true) {
-					//move right
-				}
-				else if (buttonA == true) {
-					Main.main._game.moveEverythingLeft();
-					// move left animation player
-				}
+			if (buttonD == true) {
+				//move right
+			}
+			else if (buttonA == true) {
+				//move left
 			}
 		}
 		public function gotHit():void {

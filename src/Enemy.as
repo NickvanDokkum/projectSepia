@@ -2,6 +2,8 @@ package
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.display.MovieClip;
+	import flash.events.Event;
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
 	/**
@@ -14,6 +16,7 @@ package
 		private var enemyArt:Class;
 		private var enemy:Bitmap;
 		private var hitted:Boolean = false;
+		
 		private var bulletTimeBool:Boolean = false;
 		
 		public function Enemy() 

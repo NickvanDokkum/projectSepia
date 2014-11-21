@@ -74,21 +74,21 @@ package
 		}
 		public function moveEverythingLeft():void {
 			var currentEnemy : Enemy;
-					for (var i in _enemy.enemyArray) {
-					currentEnemy = _enemy.enemyArray[i];
-					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
-						currentEnemy.moveLeft();
-					}
+			for (var i in _enemy.enemyArray) {
+				currentEnemy = _enemy.enemyArray[i];
+				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+					currentEnemy.moveLeft();
 				}
+			}
 		}
 		public function moveEverythingRight():void {
 			var currentEnemy : Enemy;
-					for (var i in _enemy.enemyArray) {
-					currentEnemy = _enemy.enemyArray[i];
-					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
-						currentEnemy.moveRight();
-					}
+			for (var i in _enemy.enemyArray) {
+				currentEnemy = _enemy.enemyArray[i];
+				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+					currentEnemy.moveRight();
 				}
+			}
 		}
 	}
 }
