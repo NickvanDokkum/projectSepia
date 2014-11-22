@@ -80,6 +80,7 @@ package
 					currentEnemy.moveLeft();
 				}
 			}
+			trace("moveEverythingLeft");
 		}
 		public function moveEverythingRight():void {
 			var currentEnemy : Enemy;
@@ -89,6 +90,7 @@ package
 					currentEnemy.moveRight();
 				}
 			}
+			trace("moveEverythingRight");
 		}
 	}
 }
