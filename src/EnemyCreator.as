@@ -28,9 +28,15 @@ package
 		}
 		public function createWave():void 
 		{
-			var enemy:Enemy = new Enemy();
-			_stage.addChild(enemy);
-			enemyArray.push(enemy);
+			trace("creating  wave");
+			for (var i:Number = 0; i < 3; i++) {
+				var enemy:Enemy = new Enemy();
+				_stage.addChild(enemy);
+				enemyArray.push(enemy);
+				enemy.switchNumber = i + 1;
+				enemy.coords();
+				trace("created " + enemy);
+			}
 		}
 	}
 }

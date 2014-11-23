@@ -16,6 +16,7 @@ package
 		public var _enemy:EnemyCreator;
 		public var _crosshair:Crosshair;
 		public var _background:Background;
+		private var bulletTimeOn:Boolean = false;
 
 		private var enemiesHit:Number = 0;
 		private var deathTimer:Timer = new Timer(1000, 1);
@@ -42,16 +43,19 @@ package
 		{
 			trace("shooting");
 			var currentEnemy : Enemy;
-			for (var i in _enemy.enemyArray) {
-				currentEnemy = _enemy.enemyArray[i];
-				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
-					currentEnemy.hit();
+			if(bulletTimeOn == true){
+				for (var i in _enemy.enemyArray) {
+					currentEnemy = _enemy.enemyArray[i];
+					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+						currentEnemy.hit();
+					}
 				}
 			}
 		}
 		public function startTimer():void {
 			deathTimer.addEventListener(TimerEvent.TIMER, timer);
 			deathTimer.start();
+			_player.bulletTime();
 		}
 		public function timer(e:TimerEvent) {
 			if (enemiesHit < 3) {
@@ -69,14 +73,14 @@ package
 				_player.bulletTimeOff();
 			}
 		}
-		public function bulletTime():void {
-			_player.bulletTime();
-		}
 		public function moveEverythingLeft():void {
 			var currentEnemyLeft : Enemy;
 			for (var i in _enemy.enemyArray) {
 				currentEnemyLeft = _enemy.enemyArray[i];
 				currentEnemyLeft.moveLeft();
+				if (currentEnemyLeft.coordsX < 800 && currentEnemyLeft.hitted == false) {
+					startTimer();
+				}
 			}
 		}
 		public function moveEverythingRight():void {

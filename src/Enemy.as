@@ -15,7 +15,9 @@ package
 		[Embed(source="../lib/chara_design.jpg")]
 		private var enemyArt:Class;
 		private var enemy:Bitmap;
-		private var hitted:Boolean = false;
+		public var hitted:Boolean = false;
+		public var coordsX:Number;
+		public var switchNumber:Number;
 		
 		private var bulletTimeBool:Boolean = false;
 		
@@ -27,24 +29,12 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			stage.addEventListener(Event.ENTER_FRAME, updateFunction);
 			enemy = new enemyArt();
-			enemy.x = 1000;
-			enemy.y = 400;
 			addChild(enemy);
-		}
-		
-		private function updateFunction(e:Event):void 
-		{
-			if (bulletTime == false && hitted == false) {
-				if (enemy.x < 1001) {
-					Main.main._game.bulletTime();
-				}
-			}
+			enemy.y = 500;
 		}
 		public function hit():void {
 			if (hitted == false) {
-				stage.removeEventListener(Event.ENTER_FRAME, updateFunction);
 				// change movieclip to got hit animation, please
 				hitted = true;
 				if (enemy.scaleX == 1) {
@@ -68,9 +58,29 @@ package
 		}
 		public function moveLeft():void {
 			enemy.x -= 5;
+			coordsX = enemy.x;
 		}
 		public function moveRight():void {
 			enemy.x += 5;
+			coordsX = enemy.x;
+		}
+		public function coords():void {
+			switch(switchNumber) { 
+				
+				case(1):
+					enemy.x = stage.stageWidth + enemy.width * switchNumber;
+				break;
+				case(2):
+					enemy.x = stage.stageWidth + enemy.width * switchNumber;
+				break;
+				case(3):
+					enemy.x = stage.stageWidth + enemy.width * switchNumber;
+				break;
+				default:
+					trace("enemy coords failed");
+				break;
+			}
+			
 		}
 	}
 }

@@ -56,10 +56,10 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-			if (buttonD == true) {
+			if (buttonD == true && bulletTimeBool == false) {
 				Main.main._game.moveEverythingRight();
 			}
-			else if (buttonA == true) {
+			else if (buttonA == true && bulletTimeBool == false) {
 				Main.main._game.moveEverythingLeft();
 			}
 		}
