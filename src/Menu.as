@@ -35,7 +35,7 @@ package
 			
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 		 
-			stage.addEventListener(MouseEvent.MOUSE_DOWN, );
+			//stage.addEventListener(MouseEvent.MOUSE_DOWN,);
 
 		}
 
