@@ -6,6 +6,7 @@ package
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import flash.text.TextField;
 	/**
 	 * ...
 	 * @author Nick van Dokkum
@@ -19,6 +20,7 @@ package
 		private var bulletTimeOn:Boolean = false;
 		public var aliveEnemies:Boolean = false;
 		public var score:Number = 0;
+		private var scoreTxt:TextField;
 
 		private var enemiesHit:Number = 0;
 		private var deathTimer:Timer = new Timer(2000, 1);
@@ -38,9 +40,13 @@ package
 			_enemy = new EnemyCreator(stage);
 			_crosshair = new Crosshair();
 			addChild(_crosshair);
-			stage.addEventListener(MouseEvent.CLICK,click);
+			scoreTxt = new TextField();
+			scoreTxt.x = stage.stageWidth - scoreTxt.width;
+			scoreTxt.y = 0;
+			scoreTxt.text = "Waves cleared: " + score.toString();
+			stage.addChild(scoreTxt);
+			stage.addEventListener(MouseEvent.CLICK, click);
 		}
-		
 		private function click(e:MouseEvent):void 
 		{
 			var currentEnemy : Enemy;
@@ -65,18 +71,21 @@ package
 				var currentEnemy : Enemy;
 					for (var i in _enemy.enemyArray) {
 					currentEnemy = _enemy.enemyArray[i];
-					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+					if (currentEnemy.hitted == false) {
 						currentEnemy.shoot();
 					}
 				}
 				_player.gotHit();
-				stage.removeEventListener(MouseEvent.CLICK,click);
+				stage.removeEventListener(MouseEvent.CLICK, click);
+				trace("game over");
 			}
 			else {
 				aliveEnemies = false;
 				_player.bulletTimeOff();
 				bulletTimeOn = false;
 				score ++;
+				scoreTxt.text = "Waves cleared: " + score.toString();
+				enemiesHit = 0;
 			}
 		}
 		public function moveEverythingLeft():void {
