@@ -17,9 +17,11 @@ package
 		public var _crosshair:Crosshair;
 		public var _background:Background;
 		private var bulletTimeOn:Boolean = false;
+		public var aliveEnemies:Boolean = false;
+		public var score:Number = 0;
 
 		private var enemiesHit:Number = 0;
-		private var deathTimer:Timer = new Timer(1000, 1);
+		private var deathTimer:Timer = new Timer(2000, 1);
 		
 		public function Game()
 		{
@@ -41,12 +43,12 @@ package
 		
 		private function click(e:MouseEvent):void 
 		{
-			trace("shooting");
 			var currentEnemy : Enemy;
-			if(bulletTimeOn == true){
+			if (bulletTimeOn == true) {
 				for (var i in _enemy.enemyArray) {
 					currentEnemy = _enemy.enemyArray[i];
 					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
+						enemiesHit ++;
 						currentEnemy.hit();
 					}
 				}
@@ -56,6 +58,7 @@ package
 			deathTimer.addEventListener(TimerEvent.TIMER, timer);
 			deathTimer.start();
 			_player.bulletTime();
+			bulletTimeOn = true;
 		}
 		public function timer(e:TimerEvent) {
 			if (enemiesHit < 3) {
@@ -70,7 +73,10 @@ package
 				stage.removeEventListener(MouseEvent.CLICK,click);
 			}
 			else {
+				aliveEnemies = false;
 				_player.bulletTimeOff();
+				bulletTimeOn = false;
+				score ++;
 			}
 		}
 		public function moveEverythingLeft():void {
@@ -78,7 +84,7 @@ package
 			for (var i in _enemy.enemyArray) {
 				currentEnemyLeft = _enemy.enemyArray[i];
 				currentEnemyLeft.moveLeft();
-				if (currentEnemyLeft.coordsX < 800 && currentEnemyLeft.hitted == false) {
+				if (currentEnemyLeft.coordsX < 1000 && currentEnemyLeft.hitted == false) {
 					startTimer();
 				}
 			}

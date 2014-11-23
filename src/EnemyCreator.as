@@ -24,18 +24,24 @@ package
 		{
 			enemyArray = [];
 			createWave();
+			_stage.addEventListener(Event.ENTER_FRAME, updateFunction);
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		private function updateFunction(e:Event):void 
+		{
+			if (Main.main._game.aliveEnemies == false) {
+				createWave();
+			}
 		}
 		public function createWave():void 
 		{
-			trace("creating  wave");
+			Main.main._game.aliveEnemies = true;
 			for (var i:Number = 0; i < 3; i++) {
 				var enemy:Enemy = new Enemy();
 				_stage.addChild(enemy);
 				enemyArray.push(enemy);
 				enemy.switchNumber = i + 1;
 				enemy.coords();
-				trace("created " + enemy);
 			}
 		}
 	}

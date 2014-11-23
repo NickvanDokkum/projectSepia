@@ -57,14 +57,15 @@ package
 		}
 		public function updateFunction(e:Event):void {
 			if (buttonD == true && bulletTimeBool == false) {
-				Main.main._game.moveEverythingRight();
+				Main.main._game.moveEverythingLeft();
 			}
 			else if (buttonA == true && bulletTimeBool == false) {
-				Main.main._game.moveEverythingLeft();
+				Main.main._game.moveEverythingRight();
 			}
 		}
 		public function gotHit():void {
 			//player death animation here, please
+			trace("you just got shot");
 		}
 		public function bulletTime():void {
 			bulletTimeBool = true;

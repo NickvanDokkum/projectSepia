@@ -5,16 +5,13 @@ package
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.display.Sprite;
-	import flash.display.Bitmap;
 	/**
 	 * ...
 	 * @author Nick van Dokkum
 	 */
 	public class Enemy extends MovieClip
 	{
-		[Embed(source="../lib/chara_design.jpg")]
-		private var enemyArt:Class;
-		private var enemy:Bitmap;
+		public var enemy:MovieClip = new cowboy();
 		public var hitted:Boolean = false;
 		public var coordsX:Number;
 		public var switchNumber:Number;
@@ -29,7 +26,7 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			enemy = new enemyArt();
+			enemy = new cowboy();
 			addChild(enemy);
 			enemy.y = 500;
 		}
@@ -68,13 +65,13 @@ package
 			switch(switchNumber) { 
 				
 				case(1):
-					enemy.x = stage.stageWidth + enemy.width * switchNumber;
+					enemy.x = stage.stageWidth * 1.5 + enemy.width * switchNumber;
 				break;
 				case(2):
-					enemy.x = stage.stageWidth + enemy.width * switchNumber;
+					enemy.x = stage.stageWidth * 1.5 + enemy.width * switchNumber;
 				break;
 				case(3):
-					enemy.x = stage.stageWidth + enemy.width * switchNumber;
+					enemy.x = stage.stageWidth * 1.5 + enemy.width * switchNumber;
 				break;
 				default:
 					trace("enemy coords failed");
