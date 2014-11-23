@@ -7,12 +7,16 @@ package
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import flash.text.TextField;
+	import flash.media.Sound;
 	/**
 	 * ...
 	 * @author Nick van Dokkum
 	 */
 	public class Game extends MovieClip
 	{
+		[Embed(source="../lib/melodie.mp3")]
+		private var bGMusic : Class; 		 
+		private var bgMusic : Sound;
 		public var _player:Player;
 		public var _enemy:EnemyCreator;
 		public var _crosshair:Crosshair;
@@ -34,6 +38,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			bgMusic = (new bGMusic) as Sound; 			     
+			bgMusic.play();
 			_background = new Background();
 			addChild(_background);
 			_player = new Player(stage);
@@ -42,7 +48,6 @@ package
 			addChild(_crosshair);
 			scoreTxt = new TextField();
 			scoreTxt.x = stage.stageWidth - scoreTxt.width;
-			scoreTxt.y = 0;
 			scoreTxt.text = "Waves cleared: " + score.toString();
 			stage.addChild(scoreTxt);
 			stage.addEventListener(MouseEvent.CLICK, click);
