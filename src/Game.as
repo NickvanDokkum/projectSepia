@@ -73,21 +73,17 @@ package
 			_player.bulletTime();
 		}
 		public function moveEverythingLeft():void {
-			var currentEnemy : Enemy;
+			var currentEnemyLeft : Enemy;
 			for (var i in _enemy.enemyArray) {
-				currentEnemy = _enemy.enemyArray[i];
-				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
-					currentEnemy.moveLeft();
-				}
+				currentEnemyLeft = _enemy.enemyArray[i];
+				currentEnemyLeft.moveLeft();
 			}
 		}
 		public function moveEverythingRight():void {
-			var currentEnemy : Enemy;
+			var currentEnemyRight : Enemy;
 			for (var i in _enemy.enemyArray) {
-				currentEnemy = _enemy.enemyArray[i];
-				if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
-					currentEnemy.moveRight();
-				}
+				currentEnemyRight = _enemy.enemyArray[i];
+				currentEnemyRight.moveRight();
 			}
 		}
 	}
