@@ -57,10 +57,10 @@ package
 		}
 		public function updateFunction(e:Event):void {
 			if (buttonD == true) {
-				Main.main._game.moveEverythingRight;
+				Main.main._game.moveEverythingRight();
 			}
 			else if (buttonA == true) {
-				Main.main._game.moveEverythingLeft;
+				Main.main._game.moveEverythingLeft();
 			}
 		}
 		public function gotHit():void {
