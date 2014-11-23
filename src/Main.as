@@ -22,9 +22,14 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			main = this;
+			_menu = new Menu();
+		//	addChild(_menu);
+		_game = new Game();
+		addChild(_game);
+			
+		}
 			_game = new Game();
 			addChild(_game);
-
 			//_menu = new Menu();
 			//addChild(_menu);
 		}
