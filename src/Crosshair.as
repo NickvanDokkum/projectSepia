@@ -1,6 +1,5 @@
 package  
 {
-
 	import flash.display.Stage;
 	import flash.display.Bitmap;
 	import flash.display.MovieClip;
@@ -8,13 +7,8 @@ package
 	import flash.events.MouseEvent;
 	import flash.ui.Mouse;
 	import flash.events.EventDispatcher;
-
-	
-	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
-	
-
 	/**
 	 * ...
 	 * @author Nick van Dokkum
@@ -30,7 +24,6 @@ package
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
-		
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
@@ -42,5 +35,4 @@ package
 			crosshair.y = stage.mouseY;
 		}
 	}
-
 }

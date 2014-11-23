@@ -1,26 +1,22 @@
 package  
 {
-
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
-
-	
-
 	/**
 	 * ...
 	 * @author Nick van Dokkum
 	 */
 	public class Player extends MovieClip
 	{
+		private var bulletTimeBool:Boolean = false;
 
 		private var _stage : Stage;
 
 		public var player:MovieClip = new cowboy();
-		
 		
 		private var buttonA:Boolean = false;
 		private var buttonD:Boolean = false;
@@ -34,6 +30,8 @@ package
 		{
 			_stage.removeEventListener(Event.ADDED_TO_STAGE, init);
 			player = new cowboy();
+			player.x = 200;
+			player.y = 500;
 			Main.main.stage.addChild(player);
 			
 
@@ -59,19 +57,20 @@ package
 		}
 		public function updateFunction(e:Event):void {
 			if (buttonD == true) {
-				//move right
+				Main.main._game.moveEverythingRight();
 			}
 			else if (buttonA == true) {
-				//move left
+				Main.main._game.moveEverythingLeft();
 			}
 		}
 		public function gotHit():void {
 			//player death animation here, please
-
-			
-			
-
+		}
+		public function bulletTime():void {
+			bulletTimeBool = true;
+		}
+		public function bulletTimeOff():void {
+			bulletTimeBool = false;
 		}
 	}
-
 }

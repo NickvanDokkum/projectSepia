@@ -11,7 +11,7 @@ package
 	{
 		public static var main: Main;
 		public var _game:Game;
-		public var _menu:Menu;
+		//public var _menu:Menu;
 		public function Main():void 
 		{
 			if (stage) init();
@@ -22,6 +22,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			main = this;
+<<<<<<< HEAD
 			_menu = new Menu();
 		//	addChild(_menu);
 		_game = new Game();
@@ -29,11 +30,15 @@ package
 			
 		}
 		
+=======
+			_game = new Game();
+			addChild(_game);
+>>>>>>> origin/master
 
-		
-		
-		
-		public function startGame()
+			//_menu = new Menu();
+			//addChild(_menu);
+		}
+		/*public function startGame()
 		{
 			if (_menu.startPressed == true)
 			{
@@ -42,7 +47,6 @@ package
 				trace("adafad");
 			}
 		}
-		
 		public function addgame()
 		{
 			if (_menu.startnow == true)
@@ -59,8 +63,6 @@ package
 				trace("adafaffagrgead");
 				addChild(_game);
 			}
-		}
-		
+		}*/
 	}
-	
 }

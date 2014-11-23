@@ -5,11 +5,6 @@ package
 	import flash.display.Bitmap;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
-	import Player;
-	import Crosshair;
-	import Enemy;
-	import Background;
-	import EnemyCreator;
 	import flash.utils.Timer;
 	/**
 	 * ...
@@ -27,7 +22,6 @@ package
 		
 		public function Game()
 		{
-			
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -71,11 +65,26 @@ package
 				_player.gotHit();
 				stage.removeEventListener(MouseEvent.CLICK,click);
 			}
+			else {
+				_player.bulletTimeOff();
+			}
 		}
-
-		
-
-		
+		public function bulletTime():void {
+			_player.bulletTime();
+		}
+		public function moveEverythingLeft():void {
+			var currentEnemyLeft : Enemy;
+			for (var i in _enemy.enemyArray) {
+				currentEnemyLeft = _enemy.enemyArray[i];
+				currentEnemyLeft.moveLeft();
+			}
+		}
+		public function moveEverythingRight():void {
+			var currentEnemyRight : Enemy;
+			for (var i in _enemy.enemyArray) {
+				currentEnemyRight = _enemy.enemyArray[i];
+				currentEnemyRight.moveRight();
+			}
+		}
 	}
-
 }
