@@ -86,7 +86,6 @@ package
 					trace("enemy coords failed");
 				break;
 			}
-			
 		}
 	}
 }
