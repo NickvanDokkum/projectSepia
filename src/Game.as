@@ -91,6 +91,7 @@ package
 				score ++;
 				scoreTxt.text = "Waves cleared: " + score.toString();
 				enemiesHit = 0;
+				deathTimer = new Timer(2000 - score * 50, 1);
 			}
 		}
 		public function moveEverythingLeft():void {
