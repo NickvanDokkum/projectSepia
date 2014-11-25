@@ -49,8 +49,10 @@ package
 			_crosshair = new Crosshair();
 			addChild(_crosshair);
 			scoreTxt = new TextField();
-			scoreTxt.x = stage.stageWidth - scoreTxt.width;
 			scoreTxt.text = "Waves cleared: " + score.toString();
+			scoreTxt.scaleX = 2;
+			scoreTxt.scaleY = 2;
+			scoreTxt.x = stage.stageWidth - scoreTxt.width;
 			stage.addChild(scoreTxt);
 			stage.addChild(effectMov);
 			stage.addEventListener(MouseEvent.CLICK, click);
