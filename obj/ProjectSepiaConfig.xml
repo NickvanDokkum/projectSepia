@@ -37,7 +37,7 @@
     </source-path>
     <library-path append="true">
       <path-element>C:\Users\Nick\Desktop\school\projectSepia\lib\croshair.swc</path-element>
-      <path-element>C:\Users\Nick\Desktop\school\projectSepia\lib\cowboy.swc</path-element>
+      <path-element>C:\Users\Nick\Desktop\school\projectSepia\lib\cowboy_01.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

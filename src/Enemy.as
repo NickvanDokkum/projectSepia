@@ -73,6 +73,15 @@ package
 				case(3):
 					enemy.x = stage.stageWidth * 1.5 + enemy.width * switchNumber;
 				break;
+				case(4):
+					enemy.x = stage.stageWidth + enemy.width / 2;
+				break;
+				case(5):
+					enemy.x = stage.stageWidth + enemy.width * 1.5;
+				break;
+				case(6):
+					enemy.x = stage.stageWidth + enemy.width * 2.5;
+				break;
 				default:
 					trace("enemy coords failed");
 				break;
