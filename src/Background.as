@@ -13,8 +13,9 @@ package
 	{
 		
 		public var player:Player;
-		public var checkPos: Boolean;
-		public var i:Number;
+		public var checkPosRight: Boolean;
+		public var checkPosLeft: Boolean;
+		
 		
 		[Embed(source = "../lib/background_sepia_other_01.jpg")]
 		private var bgArt:Class;
@@ -24,12 +25,11 @@ package
 		private var GroundArt:Class;
 		private var groundArt : Bitmap;
 		
-		[Embed(source="../lib/background_02 (3).png")]
-		private var bgArt_two_one: Class;
-		public var background_two_one: Bitmap;
 		
 		[Embed(source="../lib/background_02 (3).png")]
-		private var bgArt_two_two: Class;
+		private var bgArt_two: Class;
+		public var background_two_one: Bitmap;
+		
 		public var background_two_two: Bitmap;
 		
 		public function Background() 
@@ -44,27 +44,24 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			background = new bgArt;
-			background_two_one = new bgArt_two_one;
-			background_two_two = new bgArt_two_two;
+			background_two_one = new bgArt_two;
+			background_two_two = new bgArt_two;
 			groundArt = new GroundArt;
 			stage.addChild(background);
 			stage.addChild(background_two_one);
 			stage.addChild(background_two_two);
 			stage.addChild(groundArt);
-			background_two_two.x = -1700;
-			checkPos = true;
-			i = 0.1;
-			
+			background_two_two.x = -1275;
+			checkPosLeft = false;
+			checkPosRight = false;
 		}
 		public function moveLeft() : void
 		{
-			checkPos = true;
-			if (checkPos == true)
-			{
-				background_two_one.x -= i;
-				background_two_two.x -= i;
-			}
-		
+			
+			background_two_one.x += -0.1;
+			background_two_two.x += -0.1;
+			
+			
 			if (background_two_one.x < -1275)
 			{
 				background_two_one.x = 1275; 
@@ -78,13 +75,9 @@ package
 		
 		public function moveRight() : void
 		{
-			checkPos = true;
-			if (checkPos == true)
-			{
-				background_two_one.x += i;
-				background_two_two.x += i;
-			}
-		
+			background_two_one.x += 0.1;
+			background_two_two.x += 0.1;
+			
 			if (background_two_one.x > 1275)
 			{
 				background_two_one.x = -1275; 

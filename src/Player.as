@@ -18,9 +18,10 @@ package
 
 		public var player:MovieClip = new cowboy();
 		
+		public var animNum:Number;
 	
 	
-		
+		public var check : Boolean;
 		public var player_removed:Boolean;
 		public var buttonA:Boolean = false;
 		public var buttonD:Boolean = false;
@@ -56,11 +57,12 @@ package
 		}
 		
 		//--------------------------
-		public function SetPlayerAnimWalk()
+		public function setPlayerWalk()
 		{
 			if ( player_removed == true )
 			{
-			player = new cowboy_walk_01();
+				animNum = 2;
+				player = new cowboy_walk_01();
 				_stage.addChild(player);
 				player.scaleX = 1;
 				player.x = 200;
@@ -70,11 +72,12 @@ package
 		
 		}
 		
-		public function SetPlayerDeath()
+		public function setPlayerDeath()
 		{
 			if ( player_removed == true )
 			{
-			player = new cowboy_death_01();
+				animNum = 4;
+				player = new cowboy_death_01();
 				_stage.addChild(player);
 				player.scaleX = 1;
 				player.x = 200;
@@ -83,11 +86,12 @@ package
 		
 		}
 		
-		public function SetPlayerShoot()
+		public function setPlayerShoot()
 		{
 			if ( player_removed == true )
 			{
-			player = new cowboy_shoot_01();
+				animNum = 3;
+				player = new cowboy_shoot_01();
 				_stage.addChild(player);
 				player.scaleX = this.scaleX;
 				player.x = 200;
@@ -96,11 +100,12 @@ package
 		
 		}
 		
-		public function SetPlayerIdle()
+		public function setPlayerIdle()
 		{
 			if (buttonD == false)
 			{
-				trace(buttonD);
+				animNum = 1;
+				
 				player = new cowboy();
 				_stage.addChild(player);
 				
@@ -108,6 +113,16 @@ package
 				player.y = 420;
 			}
 			
+		}
+		public function removePlayer()
+		{
+			check = true;
+			if ( check == true)
+			{
+			
+			_stage.removeChild(player);
+			player_removed = true;
+			}
 		}
 		//---------------------------
 		
@@ -120,46 +135,62 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-
+			
+			
+			
 			if (buttonD == true) {
 				Main.main._game.moveEverythingRight();
-				_stage.removeChild(player);
-				player_removed = true;
-				SetPlayerAnimWalk();
+				player.scaleX = -1;
+				if (animNum != 2)
+				{
+				removePlayer();
+				setPlayerWalk();
 				
-				
-
-				trace(buttonD);
-				
+				if (animNum == 2)
+				{}
+				}
 			}
 			else if (buttonA == true) {
-
-			if (buttonD == true && bulletTimeBool == false) {
-
 				Main.main._game.moveEverythingLeft();
+				player.scaleX = 1;
+				if (animNum != 2)
+				{
+				removePlayer();
+				setPlayerWalk();
 				
+				if (animNum == 2)
+				{}
+				}
+			}
+			
+			else if(animNum != 1,4)
+				{
+				removePlayer();
+				setPlayerIdle();
 				
-			//	removeChild(player);
-			//	player = new cowboy_walk_01;
-			//	_stage.addChild(player);
-			}
-
-			
-			
-
-			else if (buttonA == true && bulletTimeBool == false) {
-				Main.main._game.moveEverythingRight();
-			}
-			}
-
+				if (animNum == 1,4)
+				{}
+				}
 		}
 		public function gotHit():void {
 			//player death animation here, please
 			trace("you just got shot");
-			SetPlayerDeath();
+			
+			if (animNum != 4)
+				{
+				removePlayer();
+				setPlayerDeath();
+				if (animNum == 4)
+				{
+					/*resetPlayerIdle();
+					setPlayerShoot();
+					setPlayerWalk();*/
+				}
+				}
 		}
 		public function bulletTime():void {
 			bulletTimeBool = true;
+			
 		}
 		public function bulletTimeOff():void {
 			bulletTimeBool = false;
