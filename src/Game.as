@@ -96,6 +96,7 @@ package
 		}
 		public function moveEverythingLeft():void {
 			var currentEnemyLeft : Enemy;
+			
 			for (var i in _enemy.enemyArray) {
 				currentEnemyLeft = _enemy.enemyArray[i];
 				currentEnemyLeft.moveLeft();
@@ -103,6 +104,7 @@ package
 					startTimer();
 				}
 			}
+			_background.moveLeft();
 		}
 		public function moveEverythingRight():void {
 			var currentEnemyRight : Enemy;
@@ -110,6 +112,7 @@ package
 				currentEnemyRight = _enemy.enemyArray[i];
 				currentEnemyRight.moveRight();
 			}
+			_background.moveRight();
 		}
 	}
 }

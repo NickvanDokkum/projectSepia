@@ -19,6 +19,7 @@ package
 		public var player:MovieClip = new cowboy();
 		
 	
+	
 		
 		public var player_removed:Boolean;
 		public var buttonA:Boolean = false;
@@ -55,20 +56,47 @@ package
 		}
 		
 		//--------------------------
-		public function SetPlayerAnim()
+		public function SetPlayerAnimWalk()
 		{
 			if ( player_removed == true )
 			{
 			player = new cowboy_walk_01();
 				_stage.addChild(player);
-				player.scaleX = -1;
+				player.scaleX = 1;
+				player.x = 200;
+				player.y = 420;
+			}
+			
+		
+		}
+		
+		public function SetPlayerDeath()
+		{
+			if ( player_removed == true )
+			{
+			player = new cowboy_death_01();
+				_stage.addChild(player);
+				player.scaleX = 1;
 				player.x = 200;
 				player.y = 420;
 			}
 		
 		}
 		
-		public function Set_Anim_Player()
+		public function SetPlayerShoot()
+		{
+			if ( player_removed == true )
+			{
+			player = new cowboy_shoot_01();
+				_stage.addChild(player);
+				player.scaleX = this.scaleX;
+				player.x = 200;
+				player.y = 420;
+			}
+		
+		}
+		
+		public function SetPlayerIdle()
 		{
 			if (buttonD == false)
 			{
@@ -79,6 +107,7 @@ package
 				player.x = 200;
 				player.y = 420;
 			}
+			
 		}
 		//---------------------------
 		
@@ -91,12 +120,12 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-<<<<<<< HEAD
+
 			if (buttonD == true) {
 				Main.main._game.moveEverythingRight();
-			_stage.removeChild(player);
+				_stage.removeChild(player);
 				player_removed = true;
-				SetPlayerAnim();
+				SetPlayerAnimWalk();
 				
 				
 
@@ -104,28 +133,30 @@ package
 				
 			}
 			else if (buttonA == true) {
-=======
+
 			if (buttonD == true && bulletTimeBool == false) {
->>>>>>> origin/master
+
 				Main.main._game.moveEverythingLeft();
-				player.scaleX = 1;
+				
 				
 			//	removeChild(player);
 			//	player = new cowboy_walk_01;
 			//	_stage.addChild(player);
 			}
-<<<<<<< HEAD
+
 			
 			
-=======
+
 			else if (buttonA == true && bulletTimeBool == false) {
 				Main.main._game.moveEverythingRight();
 			}
->>>>>>> origin/master
+			}
+
 		}
 		public function gotHit():void {
 			//player death animation here, please
 			trace("you just got shot");
+			SetPlayerDeath();
 		}
 		public function bulletTime():void {
 			bulletTimeBool = true;
@@ -133,5 +164,6 @@ package
 		public function bulletTimeOff():void {
 			bulletTimeBool = false;
 		}
-	}
+	
+}
 }

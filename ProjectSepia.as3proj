@@ -54,6 +54,7 @@
   <libraryPaths>
     <element path="lib\croshair.swc" />
     <element path="lib\cowboy.swc" />
+    <element path="lib\cowboy_01_filter.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -69,7 +70,7 @@
   </intrinsics>
   <!-- Assets to embed into the output SWF -->
   <library>
-    <asset path="lib\melodie.mp3" />
+    <!-- example: <asset path="..." id="..." update="..." glyphs="..." mode="..." place="..." sharepoint="..." /> -->
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>

@@ -11,7 +11,8 @@ package
 	 */
 	public class Background extends MovieClip
 	{
-		public var moveRight: Boolean;
+		
+		public var player:Player;
 		public var checkPos: Boolean;
 		public var i:Number;
 		
@@ -23,11 +24,11 @@ package
 		private var GroundArt:Class;
 		private var groundArt : Bitmap;
 		
-		[Embed(source = "../lib/background_02.png")]
+		[Embed(source="../lib/background_02 (3).png")]
 		private var bgArt_two_one: Class;
 		public var background_two_one: Bitmap;
 		
-		[Embed(source = "../lib/background_02.png")]
+		[Embed(source="../lib/background_02 (3).png")]
 		private var bgArt_two_two: Class;
 		public var background_two_two: Bitmap;
 		
@@ -53,35 +54,54 @@ package
 			background_two_two.x = -1700;
 			checkPos = true;
 			i = 0.1;
-			addEventListener(Event.ENTER_FRAME, loop);
+			
 		}
-		
-		public function loop(e:Event):void 
+		public function moveLeft() : void
 		{
-			if ( moveRight == true)
-			{
-				i = -0.1;
-			}
-			else
-			{
-				i = 0.1;			}
-		
+			checkPos = true;
 			if (checkPos == true)
 			{
 				background_two_one.x -= i;
 				background_two_two.x -= i;
 			}
 		
-			if (background_two_one.x < -1255)
+			if (background_two_one.x < -1275)
 			{
-				background_two_one.x = 1255; 
+				background_two_one.x = 1275; 
 			}
 		 
-			if(background_two_two.x < -1255)
+			if(background_two_two.x < -1275)
 			{
-				background_two_two.x = 1255;
+				background_two_two.x = 1275;
 			}
 		}
+		
+		public function moveRight() : void
+		{
+			checkPos = true;
+			if (checkPos == true)
+			{
+				background_two_one.x += i;
+				background_two_two.x += i;
+			}
+		
+			if (background_two_one.x > 1275)
+			{
+				background_two_one.x = -1275; 
+			}
+		 
+			if(background_two_two.x > 1275)
+			{
+				background_two_two.x = -1275;
+			}
+		}
+		
+		
+		
+			
+			
+		
+		
 	}
 
 }
