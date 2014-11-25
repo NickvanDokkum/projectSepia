@@ -25,6 +25,7 @@ package
 		public var aliveEnemies:Boolean = false;
 		public var score:Number = 0;
 		private var scoreTxt:TextField;
+		private var effectMov:MovieClip = new effect;
 
 		private var enemiesHit:Number = 0;
 		private var deathTimer:Timer = new Timer(2000, 1);
@@ -38,6 +39,7 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			effectMov = new effect;
 			bgMusic = (new bGMusic) as Sound; 			     
 			bgMusic.play();
 			_background = new Background();
@@ -50,6 +52,7 @@ package
 			scoreTxt.x = stage.stageWidth - scoreTxt.width;
 			scoreTxt.text = "Waves cleared: " + score.toString();
 			stage.addChild(scoreTxt);
+			stage.addChild(effectMov);
 			stage.addEventListener(MouseEvent.CLICK, click);
 		}
 		private function click(e:MouseEvent):void 

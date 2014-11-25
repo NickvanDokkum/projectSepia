@@ -18,21 +18,27 @@ package
 
 		public var player:MovieClip = new cowboy();
 		
-		private var buttonA:Boolean = false;
-		private var buttonD:Boolean = false;
+	
+		
+		public var player_removed:Boolean;
+		public var buttonA:Boolean = false;
+		public var buttonD:Boolean = false;
 		public function Player(stage : Stage) 
 		{
 			_stage = stage;
 			if (_stage) init();
 			else _stage.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
+		
+		
+		
 		private function init(e:Event = null):void 
 		{
 			_stage.removeEventListener(Event.ADDED_TO_STAGE, init);
 			player = new cowboy();
 			player.x = 200;
-			player.y = 500;
-			Main.main.stage.addChild(player);
+			player.y = 420;
+			_stage.addChild(player);
 			
 
 			_stage.addEventListener(Event.ENTER_FRAME, updateFunction);
@@ -47,6 +53,33 @@ package
 				buttonD = true;
 			}
 		}
+		
+		//--------------------------
+		public function SetPlayerAnim()
+		{
+			if ( player_removed == true )
+			{
+			player = new cowboy_walk_01();
+				_stage.addChild(player);
+				player.scaleX = -1;
+				player.x = 200;
+				player.y = 420;
+			}
+		
+		}
+		
+		public function Set_Anim_Player()
+		{
+			if (buttonD == false)
+			{
+				trace(buttonD);
+				player = new cowboy();
+				_stage.addChild(player);
+				
+				player.x = 200;
+				player.y = 420;
+			}
+		}		
 		public function onKeyUp(e:KeyboardEvent):void {
 			if (e.keyCode == 65) {
 				buttonA = false;
@@ -58,6 +91,7 @@ package
 		public function updateFunction(e:Event):void {
 			if (buttonD == true && bulletTimeBool == false) {
 				Main.main._game.moveEverythingLeft();
+				player.scaleX = 1;
 			}
 			else if (buttonA == true && bulletTimeBool == false) {
 				Main.main._game.moveEverythingRight();

@@ -26,7 +26,6 @@ package
 			//	addChild(_menu);
 			_game = new Game();
 			addChild(_game);
-			
 		}
 		/*public function startGame()
 		{
