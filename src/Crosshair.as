@@ -16,7 +16,7 @@ package
 
 	public class Crosshair extends MovieClip
 	{
-		public var crosshair:MovieClip = new croshair();
+		private var crosshair:MovieClip = new croshair();
 		public function Crosshair():void
 		{
 			Mouse.hide();
@@ -30,7 +30,7 @@ package
 			stage.addChild(crosshair);
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, updateFunction);
 		}
-			private function updateFunction(event:MouseEvent) : void {
+		private function updateFunction(event:MouseEvent) : void {
 			crosshair.x = stage.mouseX;
 			crosshair.y = stage.mouseY;
 		}

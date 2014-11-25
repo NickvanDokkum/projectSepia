@@ -11,7 +11,7 @@ package
 	public class EnemyCreator extends EventDispatcher
 	{
 		public var enemyArray:Array;
-		
+		private var start:Boolean = true;
 		private var _stage : Stage;
 		
 		public function EnemyCreator(stage : Stage) 
@@ -40,9 +40,15 @@ package
 				var enemy:Enemy = new Enemy();
 				_stage.addChild(enemy);
 				enemyArray.push(enemy);
-				enemy.switchNumber = i + 1;
+				if (start == true) {
+					enemy.switchNumber = i + 4;
+				}
+				else {
+					enemy.switchNumber = i + 1;
+				}
 				enemy.coords();
 			}
+			start = false;
 		}
 	}
 }
