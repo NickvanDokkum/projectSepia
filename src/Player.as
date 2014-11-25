@@ -91,6 +91,7 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
+<<<<<<< HEAD
 			if (buttonD == true) {
 				Main.main._game.moveEverythingRight();
 			_stage.removeChild(player);
@@ -103,6 +104,9 @@ package
 				
 			}
 			else if (buttonA == true) {
+=======
+			if (buttonD == true && bulletTimeBool == false) {
+>>>>>>> origin/master
 				Main.main._game.moveEverythingLeft();
 				player.scaleX = 1;
 				
@@ -110,11 +114,18 @@ package
 			//	player = new cowboy_walk_01;
 			//	_stage.addChild(player);
 			}
+<<<<<<< HEAD
 			
 			
+=======
+			else if (buttonA == true && bulletTimeBool == false) {
+				Main.main._game.moveEverythingRight();
+			}
+>>>>>>> origin/master
 		}
 		public function gotHit():void {
 			//player death animation here, please
+			trace("you just got shot");
 		}
 		public function bulletTime():void {
 			bulletTimeBool = true;
