@@ -41,7 +41,7 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			effectMov = new effect;
 			bgMusic = (new bGMusic) as Sound; 			     
-			bgMusic.play();
+			bgMusic.play(0, 9999);
 			_background = new Background();
 			addChild(_background);
 			_player = new Player(stage);
