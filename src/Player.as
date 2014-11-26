@@ -121,14 +121,10 @@ package
 		}
 		public function removePlayer()
 		{
-			check = true;
-			if ( check == true)
-			{
 			if (_stage.contains(player)){
 				_stage.removeChild(player);
 			}
 			player_removed = true;
-			}
 		}
 		//---------------------------
 		
