@@ -2,6 +2,7 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	/**
 	 * ...
@@ -11,62 +12,79 @@ package
 	{
 		public static var main: Main;
 		public var _game:Game;
-		//public var _menu:Menu;
+		public var _menu:Menu;
+		public var startPressed : Boolean;
+		public var startnow : Boolean;
+		public var addedmenu:Boolean;
 		public function Main():void 
 		{
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
-		private function init(e:Event = null):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-			main = this;
+			private function init(e:Event = null):void 
+			{
+				removeEventListener(Event.ADDED_TO_STAGE, init);
+				main = this;
 
-			//_menu = new Menu();
-		//	addChild(_menu);
-		_game = new Game();
-		addChild(_game);
+				_menu = new Menu();
+				addChild(_menu);
+				
+				_game = new Game();
+				//addChild(_game);
+		
+				stage.addEventListener(MouseEvent.MOUSE_DOWN,Start_menu);
+			}
+			
+			public function onMouseDown(e:MouseEvent):void
+		{
+			if (onMouseDown == true)
+			{
+				startPressed = true;
+			}
 			
 		}
 		
-
-		
-
-
-			//_menu = new Menu();
-			//addChild(_menu);
-
-			//_menu = new Menu();
-			//	addChild(_menu);
+		public function  Start_menu(e:MouseEvent):void 
+		{
+			if (addedmenu == false)
+			{
 			
-
-		}
-		/*public function startGame()
-		{
-			if (_menu.startPressed == true)
-			{
-				removeChild(_menu);
-				_menu.startnow == true;
-				trace("adafad");
-			}
-		}
-		public function addgame()
-		{
-			if (_menu.startnow == true)
-			{
-				trace("ajshvjlshfmjkhj856758484dafad");
-				_menu.addedGame == true;
-			}
-		}
-		
-		public function checkGame()
-		{
-			if (_menu.addedGame == true)
-			{
-				trace("adafaffagrgead");
+				dispatchEvent(new Event("START"));
+				//trace(_game._player.dead);
 				addChild(_game);
+				addedmenu = true;
+				removeChild(_menu);
 			}
-		}*/
+			else {}
+			
+			
+		}
+		public function restart (e:MouseEvent):void 
+		{
+			if (_game._player.dead == true)
+			{
+				trace(_game._player.dead);
+				dispatchEvent(new Event("START"));
+				addChild(_menu);
+				addedmenu = true;
+				removeChild(_game);
+			}
+			else
+			{
+				trace("fffuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+			}
+		}
+			
+			public function start()
+			{
+				_menu.addEventListener("PLAY_CLICKED", Start_menu);
+			}
+
+		}
+		
+		
+		
+		
 	}
 //}

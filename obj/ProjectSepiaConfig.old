@@ -39,6 +39,7 @@
       <path-element>C:\Users\yosha\Documents\GitHub\projectSepia\lib\croshair.swc</path-element>
       <path-element>C:\Users\yosha\Documents\GitHub\projectSepia\lib\cowboy.swc</path-element>
       <path-element>C:\Users\yosha\Documents\GitHub\projectSepia\lib\cowboy_01_filter.swc</path-element>
+      <path-element>C:\Users\yosha\Documents\GitHub\projectSepia\lib\menu.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

@@ -12,39 +12,28 @@ package
 	 */
 	public class Menu extends MovieClip
 	{
-		[Embed(source = "../lib/butplaceholdercrap.png")]
-		private var crappyButtonArt : Class;
-		private var crappybuttonArt : Bitmap;
 		
-		public var startPressed : Boolean;
-		public var startnow : Boolean;
-		public var _Game:Game;
-		public var addedGame: Boolean;
+		[Embed(source = "../lib/background_sepia_other_01.jpg")]
+		private var bgArt:Class;
+		private var background : Bitmap;
+		
+		[Embed(source="../lib/background_02 (3).png")]
+		private var bgArt_two: Class;
+		public var background_two: Bitmap;
+		
+		
+		//public var button:MovieClip = new options;
+		
 
 		public function Menu() 
 		{
+			//button = new options;
+			//addChild(button);
 			
-			if (stage) init();
-			else addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-
-		private function init(e:Event = null):void 
-		{
-			crappybuttonArt = new crappyButtonArt;
-			stage.addChild(crappybuttonArt);
-			
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-		 
-			//stage.addEventListener(MouseEvent.MOUSE_DOWN,);
-
-		}
-
-		public function onMouseDown(e:MouseEvent):void
-		{
-			if (onMouseDown == true)
-			{
-				startPressed = true;
-			}
+			background = new bgArt();
+			background_two = new bgArt_two();
+			addChild(background);
+			addChild(background_two);
 			
 		}
 
