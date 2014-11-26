@@ -35,16 +35,18 @@ package
 		}
 		public function createWave():void 
 		{
+			
 			Main.main._game.aliveEnemies = true;
+			var randomizer:Number = Math.floor(Math.random()*3);
 			for (var i:Number = 0; i < 3; i++) {
 				var enemy:Enemy = new Enemy();
 				_stage.addChild(enemy);
 				enemyArray.push(enemy);
 				if (start == true) {
-					enemy.switchNumber = i + 4;
+					enemy.switchNumber = i + 1;
 				}
 				else {
-					enemy.switchNumber = i + 1;
+					enemy.switchNumber = i + 4 + randomizer * 3;
 				}
 				enemy.coords();
 			}
