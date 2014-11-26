@@ -18,12 +18,14 @@ package
 
 		private var _stage : Stage;
 		
-		public var dead : Boolean;
-
+		
+		
+		public var main : Main;
+		
 		public var player:MovieClip = new cowboy();
 		
 		public var animNum:Number;
-		
+		public var playerdead : Boolean;
 		private var shootTimer:Timer = new Timer(3000, 1);
 		private var menuTimer:Timer = new Timer(3000, 1);
 		public var check : Boolean;
@@ -176,7 +178,8 @@ package
 				removePlayer();
 				setPlayerDeath();
 				animNum = 4;
-				dead = true;
+				playerdead = true;
+				
 			}
 		}
 		public function bulletTime():void {
@@ -201,10 +204,14 @@ package
 		}
 		private function menutimer(e:TimerEvent):void 
 		{
-			if (dead == true)
+			Main.main.dead = true;
+			if (playerdead == true)
 			{
-				Main.main.addedmenu = false;
-				Main.main.stage.restart();
+				main.dead = true;
+				main.addedmenu = false;
+				//main.restart();
+				trace(main.dead);
+				
 			}
 		}
 	}
