@@ -6,6 +6,8 @@ package
 	import flash.events.KeyboardEvent;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	/**
 	 * ...
 	 * @author Nick van Dokkum
@@ -18,9 +20,11 @@ package
 
 		public var player:MovieClip = new cowboy();
 		
-	
-	
+		public var animNum:Number;
 		
+		private var shootTimer:Timer = new Timer(3000, 1);
+		
+		public var check : Boolean;
 		public var player_removed:Boolean;
 		public var buttonA:Boolean = false;
 		public var buttonD:Boolean = false;
@@ -56,11 +60,12 @@ package
 		}
 		
 		//--------------------------
-		public function SetPlayerAnimWalk()
+		public function setPlayerWalk()
 		{
 			if ( player_removed == true )
 			{
-			player = new cowboy_walk_01();
+				animNum = 2;
+				player = new cowboy_walk_01();
 				_stage.addChild(player);
 				player.scaleX = 1;
 				player.x = 200;
@@ -70,11 +75,12 @@ package
 		
 		}
 		
-		public function SetPlayerDeath()
+		public function setPlayerDeath()
 		{
 			if ( player_removed == true )
 			{
-			player = new cowboy_death_01();
+				animNum = 4;
+				player = new cowboy_death_01();
 				_stage.addChild(player);
 				player.scaleX = 1;
 				player.x = 200;
@@ -83,11 +89,12 @@ package
 		
 		}
 		
-		public function SetPlayerShoot()
+		public function setPlayerShoot()
 		{
 			if ( player_removed == true )
 			{
-			player = new cowboy_shoot_01();
+				animNum = 3;
+				player = new cowboy_shoot_01();
 				_stage.addChild(player);
 				player.scaleX = this.scaleX;
 				player.x = 200;
@@ -96,11 +103,12 @@ package
 		
 		}
 		
-		public function SetPlayerIdle()
+		public function setPlayerIdle()
 		{
 			if (buttonD == false)
 			{
-				trace(buttonD);
+				animNum = 1;
+				
 				player = new cowboy();
 				_stage.addChild(player);
 				
@@ -108,6 +116,17 @@ package
 				player.y = 420;
 			}
 			
+		}
+		public function removePlayer()
+		{
+			check = true;
+			if ( check == true)
+			{
+			if (_stage.contains(player)){
+				_stage.removeChild(player);
+			}
+			player_removed = true;
+			}
 		}
 		//---------------------------
 		
@@ -120,50 +139,64 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-
-			if (buttonD == true) {
-				Main.main._game.moveEverythingRight();
-				_stage.removeChild(player);
-				player_removed = true;
-				SetPlayerAnimWalk();
-				
-				
-
-				trace(buttonD);
-				
+			if (animNum == 4 && player.currentFrame == player.totalFrames) {
+				player.stop();
 			}
-			else if (buttonA == true) {
-
-			if (buttonD == true && bulletTimeBool == false) {
-
-				Main.main._game.moveEverythingLeft();
-				
-				
-			//	removeChild(player);
-			//	player = new cowboy_walk_01;
-			//	_stage.addChild(player);
+			if(animNum != 3){
+				if (buttonD == true && bulletTimeBool == false) {
+					Main.main._game.moveEverythingLeft();
+					player.scaleX = 1;
+					if (animNum != 2)
+					{
+						removePlayer();
+						setPlayerWalk();
+					}
+				}
+				else if (buttonA == true && bulletTimeBool == false) {
+					Main.main._game.moveEverythingRight();
+					player.scaleX = -1;
+					if (animNum != 2)
+					{
+						removePlayer();
+						setPlayerWalk();
+					}
+				}
+				else if(animNum != 1 && animNum != 4)
+				{
+					removePlayer();
+					setPlayerIdle();
+				}
 			}
-
-			
-			
-
-			else if (buttonA == true && bulletTimeBool == false) {
-				Main.main._game.moveEverythingRight();
-			}
-			}
-
 		}
 		public function gotHit():void {
-			//player death animation here, please
 			trace("you just got shot");
-			SetPlayerDeath();
+			bulletTimeBool = true;
+			if (animNum != 4)
+			{
+				removePlayer();
+				setPlayerDeath();
+				animNum = 4;
+			}
 		}
 		public function bulletTime():void {
 			bulletTimeBool = true;
+			buttonA = false;
+			buttonD = false;
 		}
 		public function bulletTimeOff():void {
-			bulletTimeBool = false;
+			shootTimer.addEventListener(TimerEvent.TIMER, timer);
+			shootTimer.start();
+			removePlayer();
+			setPlayerShoot();
+			animNum = 3;
 		}
-	
-}
+		
+		private function timer(e:TimerEvent):void 
+		{
+			bulletTimeBool = false;
+			removePlayer();
+			setPlayerIdle();
+			animNum = 1;
+		}
+	}
 }
