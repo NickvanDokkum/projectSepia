@@ -40,6 +40,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			effectMov = new effect;
+			effectMov.scaleX = 3.3;
+			effectMov.scaleY = 3;
 			bgMusic = (new bGMusic) as Sound; 			     
 			bgMusic.play(0, 9999);
 			_background = new Background();

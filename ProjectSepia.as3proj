@@ -55,6 +55,7 @@
     <element path="lib\croshair.swc" />
     <element path="lib\cowboy.swc" />
     <element path="lib\cowboy_01_filter.swc" />
+    <element path="lib\crosshair.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
