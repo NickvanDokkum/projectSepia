@@ -34,7 +34,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			enemy = new _banditos_01();
+			enemy = new _banditos_01;
 			addChild(enemy);
 			enemy.y = 435;
 			enemy.scaleX = 0.8;
@@ -86,11 +86,10 @@ package
 			if (enemy.currentframe > enemy.totalframes - 2) {
 					stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
 					enemy.stop();
-				}
-				else {
-					removeEnemy();
-					// VERANDER HIER NAAR IDLE
-				}
+			}
+			else {
+				removeEnemy();
+				// VERANDER HIER NAAR IDLE
 			}
 		}
 		//----------------------------------------------
@@ -101,12 +100,12 @@ package
 			hitted = true;
 			// change movieclip to got hit animation, please
 			if (enemyAnimNum != 3)
-					{
-						
-						removeEnemy();
-						setEnemyDeath();
-					
-					}
+			{
+				
+				removeEnemy();
+				setEnemyDeath();
+				
+			}
 			trace("aarg");
 		}
 		public function shoot():void {
@@ -114,10 +113,10 @@ package
 				trace("bang bang");
 				// change movieclip to shoot animation, please
 				if (enemyAnimNum != 2)
-					{
-						removeEnemy();
-						setEnemyShoot();
-					}
+				{
+					removeEnemy();
+					setEnemyShoot();
+				}
 			}
 		}
 		public function bulletTime():void {
