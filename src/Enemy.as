@@ -90,6 +90,7 @@ package
 				else {
 					removeEnemy();
 					// VERANDER HIER NAAR IDLE
+					enemy = new idle_banditos_01(); 
 				}
 			}
 		}
@@ -119,6 +120,8 @@ package
 						setEnemyShoot();
 					}
 			}
+			
+			
 		}
 		public function bulletTime():void {
 			bulletTimeBool = true;
@@ -177,4 +180,3 @@ package
 			
 		}
 	}
-}
