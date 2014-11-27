@@ -11,11 +11,17 @@ package
 	 */
 	public class Enemy extends MovieClip
 	{
-		public var enemy:MovieClip = new cowboy();
+		public var enemy:MovieClip = new idle_banditos_01();
 		public var hitted:Boolean = false;
 		public var coordsX:Number;
+		public var enemyAnimNum:Number;
 		public var switchNumber:Number;
+		public var player:Player;
+
+		public var enemy_removed:Boolean;
+
 		public var markedForDead:Boolean = false;
+
 		
 		private var bulletTimeBool:Boolean = false;
 		
@@ -27,22 +33,93 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			enemy = new cowboy();
+			
+			enemy = new _banditos_01();
 			addChild(enemy);
-			enemy.y = 500;
+			enemy.y = 435;
+			enemy.scaleX = 0.8;
+			enemy.scaleY = 0.5;
 		}
+		//----------------------------------------------
+		public function setEnemyShoot():void
+		{
+			if ( enemy_removed == true )
+			{
+				enemyAnimNum = 2;
+				enemy = new shoot_banditos_01(); 
+				addChild(enemy);
+				enemy.y = 445;
+				//enemy.x = this;
+				enemy.scaleX = -0.8;
+				enemy.scaleY = 0.5;
+				enemy.x = coordsX;
+				stage.addEventListener(Event.ENTER_FRAME,updateFunction);
+				
+			}
+		}
+		public function setEnemyDeath():void
+		{
+			if ( enemy_removed == true )
+			{
+				enemyAnimNum = 3;
+				enemy = new death_banditos_01(); 
+				addChild(enemy);
+				enemy.y = 445;
+				enemy.x = coordsX;
+				stage.addEventListener(Event.ENTER_FRAME,updateFunction);
+				enemy.scaleX = -0.5;
+				enemy.scaleY = 0.5;
+				
+			}
+		}
+		
+		public function removeEnemy():void
+		{
+			if (enemy){
+				removeChild(enemy);
+			}
+			enemy_removed = true;
+		}
+		
+		public function updateFunction(e:Event):void
+		{
+			if (enemy.currentFrame > enemy.totalFrames - 1) {
+				stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
+				if(hitted == true){
+					stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
+					enemy.stop();
+				}
+				else {
+					removeEnemy();
+					// VERANDER HIER NAAR IDLE
+				}
+			}
+		}
+		//----------------------------------------------
 		public function hit():void {
 			markedForDead = true;
 		}
 		public function death():void {
 			hitted = true;
 			// change movieclip to got hit animation, please
+			if (enemyAnimNum != 3)
+					{
+						
+						removeEnemy();
+						setEnemyDeath();
+					
+					}
 			trace("aarg");
 		}
 		public function shoot():void {
 			if (hitted == false) {
 				trace("bang bang");
 				// change movieclip to shoot animation, please
+				if (enemyAnimNum != 2)
+					{
+						removeEnemy();
+						setEnemyShoot();
+					}
 			}
 		}
 		public function bulletTime():void {
@@ -58,7 +135,7 @@ package
 		}
 		public function coords():void {
 			switch(switchNumber) { 
-				
+				// elke derde is dezelfde
 				case(1):
 					enemy.x = stage.stageWidth + enemy.width / 2;
 				break;

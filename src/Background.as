@@ -25,6 +25,12 @@ package
 		private var GroundArt:Class;
 		private var groundArt : Bitmap;
 		
+		[Embed(source="../lib/background_04.png")]
+		private var bgArt_three: Class;
+		public var background_three_one: Bitmap;
+		
+		public var background_three_two: Bitmap;
+		
 		
 		[Embed(source="../lib/background_02 (3).png")]
 		private var bgArt_two: Class;
@@ -46,12 +52,21 @@ package
 			background = new bgArt;
 			background_two_one = new bgArt_two;
 			background_two_two = new bgArt_two;
+			
+			background_three_one = new bgArt_three;
+			background_three_two = new bgArt_three;
+			
 			groundArt = new GroundArt;
 			stage.addChild(background);
 			stage.addChild(background_two_one);
 			stage.addChild(background_two_two);
+			stage.addChild(background_three_one);
+			stage.addChild(background_three_two);
 			stage.addChild(groundArt);
 			background_two_two.x = -1275;
+			background_three_two.x = -2188;
+			background_three_one.y = -53;
+			background_three_two.y = -53;
 			checkPosLeft = false;
 			checkPosRight = false;
 		}
@@ -60,6 +75,8 @@ package
 			
 			background_two_one.x += -0.1;
 			background_two_two.x += -0.1;
+			background_three_one.x += -1;
+			background_three_two.x += -1;
 			
 			
 			if (background_two_one.x < -1275)
@@ -71,12 +88,25 @@ package
 			{
 				background_two_two.x = 1275;
 			}
+			
+			if (background_three_one.x < -2188)
+			{
+				background_three_one.x = 2188; 
+			}
+		 
+			if(background_three_two.x < -2188)
+			{
+				background_three_two.x = 2188;
+			}
 		}
 		
 		public function moveRight() : void
 		{
 			background_two_one.x += 0.1;
 			background_two_two.x += 0.1;
+			
+			background_three_one.x += 1;
+			background_three_two.x += 1;
 			
 			if (background_two_one.x > 1275)
 			{
@@ -87,12 +117,24 @@ package
 			{
 				background_two_two.x = -1275;
 			}
+			
+			if (background_three_one.x > 2188)
+			{
+				background_three_one.x = -2188; 
+			}
+		 
+			if(background_three_two.x > 2188)
+			{
+				background_three_two.x = -2188;
+			}
 		}
 		public function destroy():void {
 			stage.removeChild(background_two_one);
 			stage.removeChild(background);
 			stage.removeChild(background_two_two);
 			stage.removeChild(groundArt);
+			stage.removeChild(background_three_one);
+			stage.removeChild(background_three_two);
 		}
 		
 	}
