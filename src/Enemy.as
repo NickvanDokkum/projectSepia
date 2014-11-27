@@ -84,12 +84,13 @@ package
 		public function updateFunction(e:Event):void
 		{
 			if (enemy.currentframe > enemy.totalframes - 2) {
-					stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
-					enemy.stop();
+				stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
+				enemy.stop();
 			}
 			else {
 				removeEnemy();
 				// VERANDER HIER NAAR IDLE
+				enemy = new idle_banditos_01(); 
 			}
 		}
 		//----------------------------------------------
@@ -173,7 +174,6 @@ package
 					trace("enemy coords failed");
 				break;
 			}
-			
 		}
 	}
 }
