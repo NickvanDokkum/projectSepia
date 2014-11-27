@@ -104,7 +104,6 @@ package
 				player.x = 200;
 				player.y = 420;
 			}
-		
 		}
 		
 		public function setPlayerIdle()

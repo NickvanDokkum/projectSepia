@@ -14,7 +14,9 @@ package
 		public var enemy:MovieClip = new cowboy();
 		public var hitted:Boolean = false;
 		public var coordsX:Number;
+		public var EnemyAnimNum:Number;
 		public var switchNumber:Number;
+		public var enemy_removed:Boolean;
 		
 		private var bulletTimeBool:Boolean = false;
 		
@@ -30,6 +32,27 @@ package
 			addChild(enemy);
 			enemy.y = 500;
 		}
+		//----------------------------------------------
+		public function setEnemyShoot()
+		{
+			if ( enemy_removed == true )
+			{
+				EnemyAnimNum = 2;
+				enemy = new shoot_banditos_01(); 
+				_stage.addChild(enemy);
+				enemy.scaleX = this.scaleX;
+				
+			}
+		}
+		
+		public function removeEnemy()
+		{
+			if (_stage.contains(enemy)){
+				_stage.removeChild(enemy);
+			}
+			enemy_removed = true;
+		}
+		//----------------------------------------------
 		public function hit():void {
 			if (hitted == false) {
 				// change movieclip to got hit animation, please
@@ -63,7 +86,7 @@ package
 		}
 		public function coords():void {
 			switch(switchNumber) { 
-				
+				// elke derde is dezelfde
 				case(1):
 					enemy.x = stage.stageWidth + enemy.width / 2;
 				break;
