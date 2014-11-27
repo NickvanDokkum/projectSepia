@@ -133,6 +133,8 @@ package
 			stage.removeChild(background);
 			stage.removeChild(background_two_two);
 			stage.removeChild(groundArt);
+			stage.removeChild(background_three_one);
+			stage.removeChild(background_three_two);
 		}
 		
 	}

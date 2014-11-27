@@ -28,7 +28,7 @@ package
 		public var playerdead : Boolean;
 		private var shootTimer:Timer = new Timer(3000, 1);
 		private var menuTimer:Timer = new Timer(3000, 1);
-		private var deathTimer:Timer = new Timer(4300, 1);
+		private var deathTimer:Timer = new Timer(4150, 1);
 		public var check : Boolean;
 		public var player_removed:Boolean;
 		public var buttonA:Boolean = false;
@@ -230,6 +230,7 @@ package
 			player_removed = true;
 			buttonA = false;
 			buttonD = false;
+			
 		}
 	}
 }

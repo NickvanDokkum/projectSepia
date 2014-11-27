@@ -57,6 +57,7 @@
     <element path="lib\cowboy_01_filter.swc" />
     <element path="lib\menu.swc" />
     <element path="lib\baditos_01 (1).swc" />
+    <element path="lib\crosshair.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

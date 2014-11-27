@@ -26,11 +26,11 @@ package
 			{
 				removeEventListener(Event.ADDED_TO_STAGE, init);
 				main = this;
-
+				_game = new Game();
 				_menu = new Menu();
 				addChild(_menu);
 				
-				_game = new Game();
+				
 				//addChild(_game);
 		
 				stage.addEventListener(MouseEvent.MOUSE_DOWN, Start_menu);
@@ -53,7 +53,7 @@ package
 			{
 			
 				dispatchEvent(new Event("START"));
-				_game = new Game
+				_game = new Game();
 				addChild(_game);
 				addedmenu = true;
 				removeChild(_menu);
@@ -65,15 +65,20 @@ package
 		
 		public function destroyGame():void 
 		{
+			
 			trace("sjdjsjkdlajdal");
 			removeChild(_game);
 			addChild(_menu);
 			start();
-			addedmenu = true;
+			_game = new Game();
+			addedmenu = false;
+			trace("ccdyhfdffggngngff");
+			
 		}
 			
 		public function start():void
 		{
+			_game = new Game();
 			_menu.addEventListener("PLAY_CLICKED", Start_menu);
 		//	_menu.addEventListener("PLAY_CLICKED", restart);
 		}
