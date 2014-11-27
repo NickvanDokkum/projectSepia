@@ -121,6 +121,7 @@ package
 					currentEnemyLeft.moveLeft();
 					if (currentEnemyLeft.coordsX < 1000 && currentEnemyLeft.hitted == false) {
 						startTimer();
+						_player.buttonD = false;
 					}
 				}
 			}
@@ -134,5 +135,19 @@ package
 			}
 			_background.moveRight();
 		}
+		
+		public function destroy (): void
+		{
+			trace("beabfkbyakbkgbakbjaskbvhjakbghjksbffuailfbfabfalfbalflafakfbablaf");
+			_background.destroy();
+			removeChild(_background);
+			_crosshair.destroy();
+			removeChild(_crosshair);
+			_enemy.destroy();
+			stage.removeChild(effectMov);
+			stage.removeChild(scoreTxt);
+			Main.main.destroyGame();
+		}
+		
 	}
 }

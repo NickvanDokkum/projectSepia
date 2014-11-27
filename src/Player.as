@@ -28,10 +28,12 @@ package
 		public var playerdead : Boolean;
 		private var shootTimer:Timer = new Timer(3000, 1);
 		private var menuTimer:Timer = new Timer(3000, 1);
+		private var deathTimer:Timer = new Timer(4300, 1);
 		public var check : Boolean;
 		public var player_removed:Boolean;
 		public var buttonA:Boolean = false;
 		public var buttonD:Boolean = false;
+		public var destroying:Boolean = false;
 		public function Player(stage : Stage) 
 		{
 			_stage = stage;
@@ -109,7 +111,7 @@ package
 		
 		public function setPlayerIdle():void
 		{
-			if (buttonD == false)
+			if (buttonD == false && animNum != 4)
 			{
 				animNum = 1;
 				
@@ -123,10 +125,10 @@ package
 		}
 		public function removePlayer():void
 		{
-			if (_stage.contains(player)){
+			if (_stage.contains(player) && animNum != 4){
 				_stage.removeChild(player);
+				player_removed = true;
 			}
-			player_removed = true;
 		}
 		//---------------------------
 		
@@ -139,10 +141,13 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
-			if (animNum == 4 && player.currentFrame == player.totalFrames) {
-				player.stop();
+			if (animNum == 4 && destroying == false) {
+				deathTimer.addEventListener(TimerEvent.TIMER,destroy);
+				deathTimer.start();
+				trace("deathTimer");
+				destroying = true;
 			}
-			if(animNum != 3){
+			if(animNum != 3 && animNum != 4){
 				if (buttonD == true && bulletTimeBool == false) {
 					Main.main._game.moveEverythingLeft();
 					player.scaleX = 1;
@@ -213,6 +218,19 @@ package
 				trace(main.dead);
 				
 			}
+		}
+		
+		public function destroy(e:TimerEvent): void
+		{
+			_stage.removeEventListener(Event.ENTER_FRAME, updateFunction);
+			_stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			_stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			Main.main._game.destroy();
+			_stage.removeChild(player);
+			bulletTimeBool = false;
+			player_removed = true;
+			buttonA = false;
+			buttonD = false;
 		}
 	}
 }

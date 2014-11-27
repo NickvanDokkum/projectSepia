@@ -88,12 +88,12 @@ package
 				background_two_two.x = -1275;
 			}
 		}
-		
-		
-		
-			
-			
-		
+		public function destroy():void {
+			stage.removeChild(background_two_one);
+			stage.removeChild(background);
+			stage.removeChild(background_two_two);
+			stage.removeChild(groundArt);
+		}
 		
 	}
 

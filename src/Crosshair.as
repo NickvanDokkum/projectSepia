@@ -31,8 +31,15 @@ package
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, updateFunction);
 		}
 		private function updateFunction(event:MouseEvent) : void {
-			crosshairArt.x = stage.mouseX;
-			crosshairArt.y = stage.mouseY;
+			if(stage.contains(crosshairArt)){
+				crosshairArt.x = stage.mouseX;
+				crosshairArt.y = stage.mouseY;
+			}
+		}
+		public function destroy():void
+		{
+			stage.removeChild(crosshairArt);
+			stage.removeEventListener(MouseEvent.MOUSE_MOVE, updateFunction);
 		}
 	}
 }
