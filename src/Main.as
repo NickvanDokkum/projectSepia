@@ -14,6 +14,7 @@ package
 		public var _menu:Menu;
 		public var startPressed : Boolean;
 		public var startnow : Boolean;
+		public var dead : Boolean;
 		public var addedmenu:Boolean;
 		public function Main():void 
 		{
@@ -32,7 +33,9 @@ package
 				_game = new Game();
 				//addChild(_game);
 		
-				stage.addEventListener(MouseEvent.MOUSE_DOWN,Start_menu);
+				stage.addEventListener(MouseEvent.MOUSE_DOWN, Start_menu);
+				
+				stage.addEventListener(Event.ENTER_FRAME, loop);
 			}
 			
 			public function onMouseDown(e:MouseEvent):void
@@ -41,6 +44,21 @@ package
 			{
 				startPressed = true;
 			}
+			
+		}
+		private function loop(e:Event):void 
+		{
+			
+			if (dead == true)
+			{
+				
+				
+				addChild(_menu);
+				removeChild(_game);
+				addedmenu = true;
+				removeChild(_game);
+			}
+			
 			
 		}
 		
@@ -59,25 +77,12 @@ package
 			
 			
 		}
-		public function restart (e:MouseEvent):void 
-		{
-			if (_game._player.dead == true)
-			{
-				trace(_game._player.dead);
-				dispatchEvent(new Event("START"));
-				addChild(_menu);
-				addedmenu = true;
-				removeChild(_game);
-			}
-			else
-			{
-				trace("fffuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-			}
-		}
 		
-		public function start()
+			
+		public function start():void
 		{
 			_menu.addEventListener("PLAY_CLICKED", Start_menu);
+		//	_menu.addEventListener("PLAY_CLICKED", restart);
 		}
 	}
 }

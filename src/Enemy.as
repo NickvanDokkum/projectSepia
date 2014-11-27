@@ -15,6 +15,7 @@ package
 		public var hitted:Boolean = false;
 		public var coordsX:Number;
 		public var switchNumber:Number;
+		public var markedForDead:Boolean = false;
 		
 		private var bulletTimeBool:Boolean = false;
 		
@@ -31,22 +32,16 @@ package
 			enemy.y = 500;
 		}
 		public function hit():void {
-			if (hitted == false) {
-				// change movieclip to got hit animation, please
-				hitted = true;
-				if (enemy.scaleX == 1) {
-					enemy.scaleX = 0.9;
-				}
-				if (enemy.scaleY == 1) {
-					enemy.scaleY = 0.9;
-				}
-			}
-			else {
-				trace("ik ben al dood, lul");
-			}
+			markedForDead = true;
+		}
+		public function death():void {
+			hitted = true;
+			// change movieclip to got hit animation, please
+			trace("aarg");
 		}
 		public function shoot():void {
-			if(hitted == false) {
+			if (hitted == false) {
+				trace("bang bang");
 				// change movieclip to shoot animation, please
 			}
 		}

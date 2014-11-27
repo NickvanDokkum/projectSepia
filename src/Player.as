@@ -14,16 +14,18 @@ package
 	 */
 	public class Player extends MovieClip
 	{
-		private var bulletTimeBool:Boolean = false;
+		public var bulletTimeBool:Boolean = false;
 
 		private var _stage : Stage;
 		
-		public var dead : Boolean;
-
+		
+		
+		public var main : Main;
+		
 		public var player:MovieClip = new cowboy();
 		
 		public var animNum:Number;
-		
+		public var playerdead : Boolean;
 		private var shootTimer:Timer = new Timer(3000, 1);
 		private var menuTimer:Timer = new Timer(3000, 1);
 		public var check : Boolean;
@@ -62,7 +64,7 @@ package
 		}
 		
 		//--------------------------
-		public function setPlayerWalk()
+		public function setPlayerWalk():void
 		{
 			if ( player_removed == true )
 			{
@@ -77,7 +79,7 @@ package
 		
 		}
 		
-		public function setPlayerDeath()
+		public function setPlayerDeath():void
 		{
 			if ( player_removed == true )
 			{
@@ -91,7 +93,7 @@ package
 		
 		}
 		
-		public function setPlayerShoot()
+		public function setPlayerShoot():void
 		{
 			if ( player_removed == true )
 			{
@@ -105,7 +107,7 @@ package
 		
 		}
 		
-		public function setPlayerIdle()
+		public function setPlayerIdle():void
 		{
 			if (buttonD == false)
 			{
@@ -119,7 +121,7 @@ package
 			}
 			
 		}
-		public function removePlayer()
+		public function removePlayer():void
 		{
 			if (_stage.contains(player)){
 				_stage.removeChild(player);
@@ -176,7 +178,8 @@ package
 				removePlayer();
 				setPlayerDeath();
 				animNum = 4;
-				dead = true;
+				playerdead = true;
+				
 			}
 		}
 		public function bulletTime():void {
@@ -201,10 +204,14 @@ package
 		}
 		private function menutimer(e:TimerEvent):void 
 		{
-			if (dead == true)
+			Main.main.dead = true;
+			if (playerdead == true)
 			{
-				Main.main.addedmenu = false;
-				Main.main.stage.restart();
+				main.dead = true;
+				main.addedmenu = false;
+				//main.restart();
+				trace(main.dead);
+				
 			}
 		}
 	}
