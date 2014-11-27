@@ -84,7 +84,7 @@ package
 		public function updateFunction(e:Event):void
 		{
 			if (enemy.currentframe > enemy.totalframes - 2) {
-					removeEventListener(Event.ENTER_FRAME,updateFunction);
+					stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
 					enemy.stop();
 				}
 		}
