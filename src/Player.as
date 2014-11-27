@@ -141,6 +141,7 @@ package
 			}
 		}
 		public function updateFunction(e:Event):void {
+			trace(Main.main._game._enemy.enemyArray.length);
 			if (animNum == 4 && destroying == false) {
 				deathTimer.addEventListener(TimerEvent.TIMER,destroy);
 				deathTimer.start();

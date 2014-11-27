@@ -65,6 +65,7 @@ package
 		
 		public function destroyGame():void 
 		{
+			trace(Main.main._game._enemy.enemyArray.length);
 			trace("sjdjsjkdlajdal");
 			removeChild(_game);
 			addChild(_menu);
