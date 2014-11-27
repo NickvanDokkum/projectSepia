@@ -3,7 +3,6 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	
 	/**
 	 * ...
 	 * @author Nick van Dokkum
@@ -36,7 +35,6 @@ package
 		
 				stage.addEventListener(MouseEvent.MOUSE_DOWN, Start_menu);
 				
-				stage.addEventListener(Event.ENTER_FRAME, loop);
 			}
 			
 			public function onMouseDown(e:MouseEvent):void
@@ -47,21 +45,7 @@ package
 			}
 			
 		}
-		private function loop(e:Event):void 
-		{
-			
-			if (dead == true)
-			{
-				
-				
-				addChild(_menu);
-				removeChild(_game);
-				addedmenu = true;
-				removeChild(_game);
-			}
-			
-			
-		}
+		
 		
 		public function  Start_menu(e:MouseEvent):void 
 		{
@@ -69,7 +53,7 @@ package
 			{
 			
 				dispatchEvent(new Event("START"));
-				//trace(_game._player.dead);
+				_game = new Game
 				addChild(_game);
 				addedmenu = true;
 				removeChild(_menu);
@@ -79,17 +63,19 @@ package
 			
 		}
 		
+		public function destroyGame():void 
+		{
+			trace("sjdjsjkdlajdal");
+			removeChild(_game);
+			addChild(_menu);
+			start();
+			addedmenu = true;
+		}
 			
-		public function start()
+		public function start():void
 		{
 			_menu.addEventListener("PLAY_CLICKED", Start_menu);
 		//	_menu.addEventListener("PLAY_CLICKED", restart);
 		}
-
-		}
-		
-		
-		
-		
 	}
-//}
+}

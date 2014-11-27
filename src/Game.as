@@ -40,6 +40,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			effectMov = new effect;
+			effectMov.scaleX = 3.3;
+			effectMov.scaleY = 3;
 			bgMusic = (new bGMusic) as Sound; 			     
 			bgMusic.play(0, 9999);
 			_background = new Background();
@@ -65,6 +67,7 @@ package
 					currentEnemy = _enemy.enemyArray[i];
 					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
 						enemiesHit ++;
+						trace("bang, motherfucker");
 						currentEnemy.hit();
 					}
 				}
@@ -79,10 +82,13 @@ package
 		public function timer(e:TimerEvent) {
 			if (enemiesHit < 3) {
 				var currentEnemy : Enemy;
-					for (var i in _enemy.enemyArray) {
+				for (var i in _enemy.enemyArray) {
 					currentEnemy = _enemy.enemyArray[i];
 					if (currentEnemy.hitted == false) {
 						currentEnemy.shoot();
+					}
+					else {
+						currentEnemy.death();
 					}
 				}
 				_player.gotHit();
@@ -90,6 +96,13 @@ package
 				trace("game over");
 			}
 			else {
+				var currentEnemy : Enemy;
+				for (var i in _enemy.enemyArray) {
+					currentEnemy = _enemy.enemyArray[i];
+					if (currentEnemy.markedForDead == true && currentEnemy.hitted == false) {
+						currentEnemy.death();
+					}
+				}
 				aliveEnemies = false;
 				_player.bulletTimeOff();
 				bulletTimeOn = false;
@@ -103,10 +116,13 @@ package
 			var currentEnemyLeft : Enemy;
 			
 			for (var i in _enemy.enemyArray) {
-				currentEnemyLeft = _enemy.enemyArray[i];
-				currentEnemyLeft.moveLeft();
-				if (currentEnemyLeft.coordsX < 1000 && currentEnemyLeft.hitted == false) {
-					startTimer();
+				if(_player.bulletTimeBool == false){
+					currentEnemyLeft = _enemy.enemyArray[i];
+					currentEnemyLeft.moveLeft();
+					if (currentEnemyLeft.coordsX < 1000 && currentEnemyLeft.hitted == false) {
+						startTimer();
+						_player.buttonD = false;
+					}
 				}
 			}
 			_background.moveLeft();
@@ -119,5 +135,19 @@ package
 			}
 			_background.moveRight();
 		}
+		
+		public function destroy (): void
+		{
+			trace("beabfkbyakbkgbakbjaskbvhjakbghjksbffuailfbfabfalfbalflafakfbablaf");
+			_background.destroy();
+			removeChild(_background);
+			_crosshair.destroy();
+			removeChild(_crosshair);
+			_enemy.destroy();
+			stage.removeChild(effectMov);
+			stage.removeChild(scoreTxt);
+			Main.main.destroyGame();
+		}
+		
 	}
 }

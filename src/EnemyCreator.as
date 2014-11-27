@@ -52,5 +52,15 @@ package
 			}
 			start = false;
 		}
+		public function destroy():void
+		{
+			var l:int = enemyArray.length;
+			for (var i : int = l - 1; i >= 0; i-- ) 
+			{
+				var index:int  = enemyArray.indexOf(enemyArray[i]);
+				_stage.removeChild(enemyArray[i]);
+				enemyArray.splice(index, 1);
+			}
+		}
 	}
 }

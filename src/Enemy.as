@@ -16,7 +16,11 @@ package
 		public var coordsX:Number;
 		public var EnemyAnimNum:Number;
 		public var switchNumber:Number;
+<<<<<<< HEAD
 		public var enemy_removed:Boolean;
+=======
+		public var markedForDead:Boolean = false;
+>>>>>>> origin/master
 		
 		private var bulletTimeBool:Boolean = false;
 		
@@ -54,22 +58,16 @@ package
 		}
 		//----------------------------------------------
 		public function hit():void {
-			if (hitted == false) {
-				// change movieclip to got hit animation, please
-				hitted = true;
-				if (enemy.scaleX == 1) {
-					enemy.scaleX = 0.9;
-				}
-				if (enemy.scaleY == 1) {
-					enemy.scaleY = 0.9;
-				}
-			}
-			else {
-				trace("ik ben al dood, lul");
-			}
+			markedForDead = true;
+		}
+		public function death():void {
+			hitted = true;
+			// change movieclip to got hit animation, please
+			trace("aarg");
 		}
 		public function shoot():void {
-			if(hitted == false) {
+			if (hitted == false) {
+				trace("bang bang");
 				// change movieclip to shoot animation, please
 			}
 		}
