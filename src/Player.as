@@ -218,7 +218,7 @@ package
 			_stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			Main.main._game.destroy();
 			_stage.removeChild(player);
-			if (_stage.contains(player) {
+			if (_stage.contains(player)) {
 				_stage.removeChild(player);
 			}
 			bulletTimeBool = false;

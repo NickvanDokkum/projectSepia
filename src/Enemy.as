@@ -89,6 +89,8 @@ package
 			else if (enemyAnimNum == 2 && enemy.currentFrame == enemy.totalFrames - 2) {
 				removeEnemy();
 				enemyAnimNum = 1;
+				//removeEnemy();
+				// VERANDER HIER NAAR IDLE
 				enemy = new idle_banditos_01(); 
 				addChild(enemy);
 				enemy.x = coordsX;
