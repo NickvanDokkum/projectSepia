@@ -68,19 +68,31 @@ package
 			background_three_one = new bgArt_three;
 			background_three_two = new bgArt_three;
 			
+			background_five_one = new bgArt_five;
+			background_five_two = new bgArt_five;
+			
 			groundArt = new GroundArt;
+			
+			background_four_one = new bgArt_four;
+			background_four_two = new bgArt_four;
+			
+			
 			stage.addChild(background);
 			stage.addChild(background_two_one);
 			stage.addChild(background_two_two);
 			stage.addChild(background_three_one);
 			stage.addChild(background_three_two);
 			
-			stage.addChild(background_four_one);
-			stage.addChild(background_four_two);
+			
 			stage.addChild(background_five_one);
 			stage.addChild(background_five_two);
 			
 			stage.addChild(groundArt);
+			
+			stage.addChild(background_four_one);
+			stage.addChild(background_four_two);
+			
+			
 			background_two_two.x = -1275;
 			background_three_two.x = -2188;
 			background_three_one.y = -53;
@@ -88,8 +100,10 @@ package
 			
 			background_four_two.x = -1275;
 			background_five_two.x = -1275;
-			background_three_one.y = -53;
-			background_three_two.y = -53;
+			background_five_one.y = -50;
+			background_five_two.y = -50;
+			background_four_one.y = -0;
+			background_four_two.y = -0;
 			
 			checkPosLeft = false;
 			checkPosRight = false;
@@ -102,8 +116,10 @@ package
 			background_three_one.x += -1;
 			background_three_two.x += -1;
 			
-			background_four_one.x += -0.1;
-			background_four_two.x += -0.1;
+			
+			
+			background_four_one.x += -3;
+			background_four_two.x += -3;
 			background_five_one.x += -2;
 			background_five_two.x += -2;
 			
@@ -158,8 +174,8 @@ package
 			background_three_one.x += 1;
 			background_three_two.x += 1;
 			
-			background_four_one.x += 0.1;
-			background_four_two.x += 0.1;
+			background_four_one.x += 3;
+			background_four_two.x += 3;
 			background_five_one.x += 2;
 			background_five_two.x += 2;
 			

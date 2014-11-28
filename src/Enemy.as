@@ -34,7 +34,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			enemy = new _banditos_01;
+			enemy = new idle_banditos_01;
 			addChild(enemy);
 			enemy.y = 435;
 			enemy.scaleX = 0.8;
@@ -88,7 +88,7 @@ package
 				enemy.stop();
 			}
 			else {
-				removeEnemy();
+				//removeEnemy();
 				// VERANDER HIER NAAR IDLE
 				enemy = new idle_banditos_01(); 
 			}
