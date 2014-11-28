@@ -35,7 +35,6 @@ package
 		}
 		public function createWave():void 
 		{
-			
 			Main.main._game.aliveEnemies = true;
 			var randomizer:Number = Math.floor(Math.random()*3);
 			for (var i:Number = 0; i < 3; i++) {

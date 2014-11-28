@@ -14,9 +14,6 @@ package
 	 */
 	public class Game extends MovieClip
 	{
-		[Embed(source="../lib/melodie.mp3")]
-		private var bGMusic : Class; 		 
-		private var bgMusic : Sound;
 		public var _player:Player;
 		public var _enemy:EnemyCreator;
 		public var _crosshair:Crosshair;
@@ -42,8 +39,6 @@ package
 			effectMov = new effect;
 			effectMov.scaleX = 3.3;
 			effectMov.scaleY = 3;
-			bgMusic = (new bGMusic) as Sound; 			     
-			bgMusic.play(0, 9999);
 			_background = new Background();
 			addChild(_background);
 			_player = new Player(stage);
@@ -67,7 +62,6 @@ package
 					currentEnemy = _enemy.enemyArray[i];
 					if (currentEnemy.hitTestPoint(mouseX, mouseY)) {
 						enemiesHit ++;
-						trace("bang, motherfucker");
 						currentEnemy.hit();
 					}
 				}
@@ -93,7 +87,6 @@ package
 				}
 				_player.gotHit();
 				stage.removeEventListener(MouseEvent.CLICK, click);
-				trace("game over");
 			}
 			else {
 				var currentEnemy : Enemy;
@@ -114,15 +107,12 @@ package
 		}
 		public function moveEverythingLeft():void {
 			var currentEnemyLeft : Enemy;
-			
 			for (var i in _enemy.enemyArray) {
-				if(_player.bulletTimeBool == false){
-					currentEnemyLeft = _enemy.enemyArray[i];
-					currentEnemyLeft.moveLeft();
-					if (currentEnemyLeft.coordsX < 1000 && currentEnemyLeft.hitted == false) {
-						startTimer();
-						_player.buttonD = false;
-					}
+				currentEnemyLeft = _enemy.enemyArray[i];
+				currentEnemyLeft.moveLeft();
+				if (currentEnemyLeft.coordsX < 1000 && currentEnemyLeft.hitted == false) {
+					startTimer();
+					_player.buttonD = false;
 				}
 			}
 			_background.moveLeft();
@@ -135,10 +125,8 @@ package
 			}
 			_background.moveRight();
 		}
-		
 		public function destroy (): void
 		{
-			trace("beabfkbyakbkgbakbjaskbvhjakbghjksbffuailfbfabfalfbalflafakfbablaf");
 			_background.destroy();
 			removeChild(_background);
 			_crosshair.destroy();
@@ -148,6 +136,5 @@ package
 			stage.removeChild(scoreTxt);
 			Main.main.destroyGame();
 		}
-		
 	}
 }

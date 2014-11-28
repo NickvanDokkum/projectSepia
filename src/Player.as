@@ -92,9 +92,7 @@ package
 				player.x = 200;
 				player.y = 420;
 			}
-		
 		}
-		
 		public function setPlayerShoot():void
 		{
 			if ( player_removed == true )
@@ -107,7 +105,6 @@ package
 				player.y = 420;
 			}
 		}
-		
 		public function setPlayerIdle():void
 		{
 			if (buttonD == false && animNum != 4)
@@ -120,17 +117,15 @@ package
 				player.x = 200;
 				player.y = 420;
 			}
-			
 		}
 		public function removePlayer():void
 		{
-			if (_stage.contains(player) && animNum != 4){
+			if (_stage.contains(player) && animNum != 4) 
+			{
 				_stage.removeChild(player);
 				player_removed = true;
 			}
 		}
-		//---------------------------
-		
 		public function onKeyUp(e:KeyboardEvent):void {
 			if (e.keyCode == 65) {
 				buttonA = false;
@@ -143,7 +138,6 @@ package
 			if (animNum == 4 && destroying == false) {
 				deathTimer.addEventListener(TimerEvent.TIMER,destroy);
 				deathTimer.start();
-				trace("deathTimer");
 				destroying = true;
 			}
 			if(animNum != 3 && animNum != 4){
@@ -173,7 +167,6 @@ package
 			}
 		}
 		public function gotHit():void {
-			trace("you just got shot");
 			bulletTimeBool = true;
 			if (animNum != 4)
 			{
@@ -183,7 +176,6 @@ package
 				setPlayerDeath();
 				animNum = 4;
 				playerdead = true;
-				
 			}
 		}
 		public function bulletTime():void {
@@ -226,6 +218,9 @@ package
 			_stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			Main.main._game.destroy();
 			_stage.removeChild(player);
+			if (_stage.contains(player) {
+				_stage.removeChild(player);
+			}
 			bulletTimeBool = false;
 			player_removed = true;
 			buttonA = false;

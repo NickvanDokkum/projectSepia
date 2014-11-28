@@ -33,14 +33,13 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
-			enemy = new _banditos_01;
+			stage.addEventListener(Event.ENTER_FRAME,updateFunction);
+			enemy = new idle_banditos_01;
 			addChild(enemy);
 			enemy.y = 435;
-			enemy.scaleX = 0.8;
+			enemy.scaleX = -0.8;
 			enemy.scaleY = 0.5;
 		}
-		//----------------------------------------------
 		public function setEnemyShoot():void
 		{
 			if ( enemy_removed == true )
@@ -53,8 +52,6 @@ package
 				enemy.scaleX = -0.8;
 				enemy.scaleY = 0.5;
 				enemy.x = coordsX;
-				stage.addEventListener(Event.ENTER_FRAME,updateFunction);
-				
 			}
 		}
 		public function setEnemyDeath():void
@@ -67,12 +64,10 @@ package
 				enemy.y = 445;
 				enemy.x = coordsX;
 				stage.addEventListener(Event.ENTER_FRAME,updateFunction);
-				enemy.scaleX = -0.5;
+				enemy.scaleX = -0.7;
 				enemy.scaleY = 0.5;
-				
 			}
 		}
-		
 		public function removeEnemy():void
 		{
 			if (enemy){
@@ -83,35 +78,39 @@ package
 		
 		public function updateFunction(e:Event):void
 		{
-			if (enemy.currentframe > enemy.totalframes - 2) {
+			if (enemy.currentFrame > enemy.totalFrames - 2 && enemyAnimNum == 3) {
 				stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
 				enemy.stop();
+				enemy.x = coordsX;
+				enemy.y = 435;
+				enemy.scaleX = -0.8;
+				enemy.scaleY = 0.5;
 			}
-			else {
+			else if (enemyAnimNum == 2 && enemy.currentFrame == enemy.totalFrames - 2) {
 				removeEnemy();
-				// VERANDER HIER NAAR IDLE
+				enemyAnimNum = 1;
 				enemy = new idle_banditos_01(); 
+				addChild(enemy);
+				enemy.x = coordsX;
+				enemy.y = 435;
+				enemy.scaleX = -0.8;
+				enemy.scaleY = 0.5;
+				stage.removeEventListener(Event.ENTER_FRAME,updateFunction);
 			}
 		}
-		//----------------------------------------------
 		public function hit():void {
 			markedForDead = true;
 		}
 		public function death():void {
 			hitted = true;
-			// change movieclip to got hit animation, please
 			if (enemyAnimNum != 3)
 			{
-				
 				removeEnemy();
 				setEnemyDeath();
-				
 			}
-			trace("aarg");
 		}
 		public function shoot():void {
 			if (hitted == false) {
-				trace("bang bang");
 				// change movieclip to shoot animation, please
 				if (enemyAnimNum != 2)
 				{

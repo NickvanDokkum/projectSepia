@@ -17,7 +17,7 @@ package
 		private var bgArt:Class;
 		private var background : Bitmap;
 		
-		[Embed(source="../lib/background_02 (3).png")]
+		[Embed(source="../lib/lose_screen.png")]
 		private var bgArt_two: Class;
 		public var background_two: Bitmap;
 		

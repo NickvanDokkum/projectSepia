@@ -53,10 +53,10 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\croshair.swc" />
-    <element path="lib\cowboy.swc" />
     <element path="lib\cowboy_01_filter.swc" />
     <element path="lib\crosshair.swc" />
     <element path="lib\baditos_01 (1).swc" />
+    <element path="lib\banditos_02.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

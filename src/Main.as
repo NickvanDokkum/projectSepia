@@ -3,12 +3,17 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.media.Sound;
 	/**
 	 * ...
 	 * @author Nick van Dokkum
 	 */
 	public class Main extends Sprite 
 	{
+		[Embed(source="../lib/melodie.mp3")]
+		private var bGMusic : Class; 		 
+		private var bgMusic : Sound;
+		
 		public static var main: Main;
 		public var _game:Game;
 		public var _menu:Menu;
@@ -25,6 +30,8 @@ package
 			private function init(e:Event = null):void 
 			{
 				removeEventListener(Event.ADDED_TO_STAGE, init);
+				bgMusic = (new bGMusic) as Sound; 			     
+				bgMusic.play(0, 9999);
 				main = this;
 				_game = new Game();
 				_menu = new Menu();
